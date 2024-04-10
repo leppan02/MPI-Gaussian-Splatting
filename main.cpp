@@ -11,6 +11,19 @@ const float SCALE_MODIFIER = 1.0;
 typedef valarray<float> Color;
 typedef valarray<float>  Vec3;
 
+class ColorHarmonic { 
+    const float SH_C[16] = {0.28209479177387814, 0.4886025119029199, 1.0925484305920792, -1.0925484305920792, 0.31539156525252005, -1.0925484305920792, 0.5462742152960396, -0.5900435899266435, 2.890611442640554, -0.4570457994644658, 0.3731763325901154, -0.4570457994644658, 1.445305721320277, -0.5900435899266435};
+    Color normalized_sh[16];
+    int sh_dim;
+    ColorHarmonic(vector<Color> sh){
+        sh_dim = sh.size();
+        assert(sh_dim == 1 || sh_dim == 2*2 || sh_dim == 3*3 || sh_dim == 4*4);
+        for(int i = 0; i < sh_dim; i++){
+
+        }
+    }     
+}
+
 class Gaussian
 {
     vector<Color> sh;

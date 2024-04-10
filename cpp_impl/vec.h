@@ -1,10 +1,14 @@
+#ifndef VEC_IMPORT
+#define VEC_IMPORT
+
 #include <math.h>
 
 #include <array>
 #include <iostream>
 #include <ostream>
 
-using namespace std;
+namespace vec {
+using std::array;
 
 template <class T, int D>
 struct vec : public array<T, D> {
@@ -73,33 +77,49 @@ std::ostream& operator<<(std::ostream& os, const vec<T, D>& m) {
 template <class T, int D>
 inline vec<vec<T, D>, D> transpose(const vec<vec<T, D>, D>& m) {
     vec<vec<T, D>, D> out;
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++) out[i][j] = m[j][i];
+    for (int i = 0; i < D; i++)
+        for (int j = 0; j < D; j++) out[i][j] = m[j][i];
     return out;
 }
 
 template <class T, int D>
 inline vec<vec<T, D>, D> mat_mul(const vec<vec<T, D>, D>& mat1,
                                  const vec<vec<T, D>, D>& mat2) {
-    vec<vec<T, D>, D> mat2T = transpose(mat2), out;
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
+    vec<vec<T, D>, D> mat2T = transpose(mat2), out{0};
+    for (int i = 0; i < D; i++)
+        for (int j = 0; j < D; j++)
             out[i][j] = out[i][j] + mat1[i].dot(mat2T[j]);
     return out;
 }
 
 template <class T, int D>
 inline vec<T, D> mat_mul(const vec<vec<T, D>, D>& mat, const vec<T, D>& o) {
-    return vec<T, D>{o.dot(mat[0]), o.dot(mat[1]), o.dot(mat[2]),
-                     o.dot(mat[3])};
+    vec<T, D> out;
+    for (int i = 0; i < D; i++) out[i] = o.dot(mat[i]);
+    return out;
 }
 
-#define IMPL_FUN(fun)                                                 \
-    template <class T, int D>                                         \
-    inline vec<T, D> fun(const vec<T, D>& a) {                        \
-        return vec<T, D>{fun(a[0]), fun(a[1]), fun(a[2]), fun(a[3])}; \
+template <class T, int D, int E>
+inline vec<vec<T, D>, E> mat_mul_elementwise(const vec<vec<T, D>, D>& mat,
+                                     const vec<vec<T, D>, E>& o) {
+    vec<vec<T, D>, E> out;
+    for (int e = 0; e < E; e++) out[e] = mat_mul(mat, o[e]);
+    return out;
+}
+
+#define IMPL_FUN(fun)                                   \
+    template <class T, int D>                           \
+    inline vec<T, D> fun(const vec<T, D>& a) {          \
+        vec<T, D> out;                                  \
+        for (int i = 0; i < D; i++) out[i] = fun(a[i]); \
+        return out;                                     \
     }
 
+using std::exp;
 IMPL_FUN(exp)
+using std::log;
 IMPL_FUN(log)
+using std::abs;
 IMPL_FUN(abs)
+};  // namespace vec
+#endif
