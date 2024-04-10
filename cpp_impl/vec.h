@@ -87,8 +87,7 @@ inline vec<vec<T, D>, D> mat_mul(const vec<vec<T, D>, D>& mat1,
                                  const vec<vec<T, D>, D>& mat2) {
     vec<vec<T, D>, D> mat2T = transpose(mat2), out;
     for (int i = 0; i < D; i++)
-        for (int j = 0; j < D; j++)
-            out[i][j] = mat1[i].dot(mat2T[j]);
+        for (int j = 0; j < D; j++) out[i][j] = mat1[i].dot(mat2T[j]);
     return out;
 }
 
@@ -101,7 +100,7 @@ inline vec<T, D> mat_mul(const vec<vec<T, D>, D>& mat, const vec<T, D>& o) {
 
 template <class T, int D, int E>
 vec<vec<T, D>, E> mat_mul_elementwise(const vec<vec<T, D>, D>& mat,
-                                             const vec<vec<T, D>, E>& o) {
+                                      const vec<vec<T, D>, E>& o) {
     vec<vec<T, D>, E> out;
     for (int e = 0; e < E; e++) out[e] = mat_mul(mat, o[e]);
     return out;
@@ -127,7 +126,8 @@ vec<vec<T, 4>, 4> quat_to_mat(const vec<T, 4>& q) {
 }
 
 template <class T>
-inline vec<vec<T, 4>, 4> cov3d(const vec<T, 4>& scale, const vec<vec<T, 4>, 4>& rot) {
+inline vec<vec<T, 4>, 4> cov3d(const vec<T, 4>& scale,
+                               const vec<vec<T, 4>, 4>& rot) {
     return mat_mul((transpose(rot), scale.squared().diag()), rot);
 }
 
@@ -139,11 +139,26 @@ inline vec<vec<T, 4>, 4> cov3d(const vec<T, 4>& scale, const vec<vec<T, 4>, 4>& 
         return out;                                     \
     }
 
-    using std::exp;
-    IMPL_FUN(exp)
-    using std::log;
-    IMPL_FUN(log)
-    using std::abs;
-    IMPL_FUN(abs)
+using std::exp;
+IMPL_FUN(exp)
+using std::log;
+IMPL_FUN(log)
+using std::abs;
+IMPL_FUN(abs)
+
+template <class T, int D>
+inline vec<T, D> min(const vec<T, D>& a, T value) {
+    vec<T, D> out;
+    for (int i = 0; i < D; i++) out[i] = min(a[i], value);
+    return out;
+}
+
+template <class T, int D>
+inline vec<T, D> max(const vec<T, D>& a, T value) {
+    vec<T, D> out;
+    for (int i = 0; i < D; i++) out[i] = max(a[i], value);
+    return out;
+}
+
 };  // namespace vec
 #endif
