@@ -1,4 +1,4 @@
-#include "Eigen/Dense"
+#include "eigen/Eigen/Dense"
 #include "happly.h"
 #include <vector>
 #include <iostream>
