@@ -85,10 +85,10 @@ inline vec<vec<T, D>, D> transpose(const vec<vec<T, D>, D>& m) {
 template <class T, int D>
 inline vec<vec<T, D>, D> mat_mul(const vec<vec<T, D>, D>& mat1,
                                  const vec<vec<T, D>, D>& mat2) {
-    vec<vec<T, D>, D> mat2T = transpose(mat2), out{0};
+    vec<vec<T, D>, D> mat2T = transpose(mat2), out;
     for (int i = 0; i < D; i++)
         for (int j = 0; j < D; j++)
-            out[i][j] = out[i][j] + mat1[i].dot(mat2T[j]);
+            out[i][j] = mat1[i].dot(mat2T[j]);
     return out;
 }
 
@@ -100,11 +100,35 @@ inline vec<T, D> mat_mul(const vec<vec<T, D>, D>& mat, const vec<T, D>& o) {
 }
 
 template <class T, int D, int E>
-inline vec<vec<T, D>, E> mat_mul_elementwise(const vec<vec<T, D>, D>& mat,
-                                     const vec<vec<T, D>, E>& o) {
+vec<vec<T, D>, E> mat_mul_elementwise(const vec<vec<T, D>, D>& mat,
+                                             const vec<vec<T, D>, E>& o) {
     vec<vec<T, D>, E> out;
     for (int e = 0; e < E; e++) out[e] = mat_mul(mat, o[e]);
     return out;
+}
+
+template <class T>
+vec<vec<T, 4>, 4> quat_to_mat(const vec<T, 4>& q) {
+    // clang-format off
+    T q0=q[0],q1=q[1],q2=q[2],q3=q[3];
+    vec<vec<T, 4>, 4> out {
+        vec<T, 4>{2*(q0*q0+q1*q1)-1,
+                  2*(q1*q2-q0*q3),
+                  2*(q1*q3+q0*q2)},
+        vec<T, 4>{2*(q1*q2+q0*q3),
+                  2*(q0*q0+q2*q2)-1,
+                  2*(q2*q3-q0*q1)},
+        vec<T, 4>{2*(q1*q3-q0*q2),
+                  2*(q2*q3+q0*q1),
+                  2*(q0*q0+q3*q3)-1},
+        vec<T, 4> {0, 0, 0, 1}};
+    // clang-format on
+    return out;
+}
+
+template <class T>
+inline vec<vec<T, 4>, 4> cov3d(const vec<T, 4>& scale, const vec<vec<T, 4>, 4>& rot) {
+    return mat_mul((transpose(rot), scale.squared().diag()), rot);
 }
 
 #define IMPL_FUN(fun)                                   \
@@ -115,11 +139,11 @@ inline vec<vec<T, D>, E> mat_mul_elementwise(const vec<vec<T, D>, D>& mat,
         return out;                                     \
     }
 
-using std::exp;
-IMPL_FUN(exp)
-using std::log;
-IMPL_FUN(log)
-using std::abs;
-IMPL_FUN(abs)
+    using std::exp;
+    IMPL_FUN(exp)
+    using std::log;
+    IMPL_FUN(log)
+    using std::abs;
+    IMPL_FUN(abs)
 };  // namespace vec
 #endif
