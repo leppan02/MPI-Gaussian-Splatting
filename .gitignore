@@ -4,3 +4,4 @@ Eigen
 *.out
 .vscode
 data
+__pycache__
