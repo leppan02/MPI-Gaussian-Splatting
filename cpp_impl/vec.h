@@ -14,16 +14,16 @@ template <class T, int D>
 struct vec : public array<T, D> {
     typedef vec<T, D> _v;
     typedef vec<_v, D> _m;
-    inline T sum() const {
+    T sum() const {
         T out = 0;
         for (int i = 0; i < D; i++) out += (*this)[i];
         return out;
     }
-    inline T dot(const _v& o) const { return ((*this) * o).sum(); }
-    inline _v squared() const { return (*this) * (*this); }
-    inline T norm() const { return (*this).squared().sum(); }
+    T dot(const _v& o) const { return ((*this) * o).sum(); }
+    _v squared() const { return (*this) * (*this); }
+    T norm() const { return (*this).squared().sum(); }
 
-    inline _m diag() const {
+    _m diag() const {
         _m out{};
         for (int i = 0; i < D; i++) out[i][i] = (*this)[i];
         return out;
@@ -32,32 +32,32 @@ struct vec : public array<T, D> {
 
 #define IMPL_ops(op)                                                       \
     template <class T, int D>                                              \
-    inline vec<T, D> operator op(const vec<T, D>& a, const vec<T, D>& o) { \
+    vec<T, D> operator op(const vec<T, D>& a, const vec<T, D>& o) { \
         vec<T, D> out;                                                     \
         for (int i = 0; i < D; i++) out[i] = a[i] op o[i];                 \
         return out;                                                        \
     }                                                                      \
     template <class T, int D>                                              \
-    inline vec<T, D> operator op(const vec<T, D>& a, const T & o) {        \
+    vec<T, D> operator op(const vec<T, D>& a, const T & o) {        \
         vec<T, D> out;                                                     \
         for (int i = 0; i < D; i++) out[i] = a[i] op o;                    \
         return out;                                                        \
     }                                                                      \
     template <class T, int D>                                              \
-    inline vec<T, D> operator op(const T & a, const vec<T, D>& o) {        \
+    vec<T, D> operator op(const T & a, const vec<T, D>& o) {        \
         vec<T, D> out;                                                     \
         for (int i = 0; i < D; i++) out[i] = a op o[i];                    \
         return out;                                                        \
     }                                                                      \
     template <class T, int D>                                              \
-    inline vec<vec<T, D>, D> operator op(const T & a,                      \
+    vec<vec<T, D>, D> operator op(const T & a,                      \
                                          const vec<vec<T, D>, D>& o) {     \
         vec<T, D> out;                                                     \
         for (int i = 0; i < D; i++) out[i] = a op o[i];                    \
         return out;                                                        \
     }                                                                      \
     template <class T, int D>                                              \
-    inline vec<vec<T, D>, D> operator op(const vec<vec<T, D>, D>& a,       \
+    vec<vec<T, D>, D> operator op(const vec<vec<T, D>, D>& a,       \
                                          const T & o) {                    \
         vec<T, D> out;                                                     \
         for (int i = 0; i < D; i++) out[i] = a[i] op o;                    \
@@ -75,7 +75,7 @@ std::ostream& operator<<(std::ostream& os, const vec<T, D>& m) {
 }
 
 template <class T, int D>
-inline vec<vec<T, D>, D> transpose(const vec<vec<T, D>, D>& m) {
+vec<vec<T, D>, D> transpose(const vec<vec<T, D>, D>& m) {
     vec<vec<T, D>, D> out;
     for (int i = 0; i < D; i++)
         for (int j = 0; j < D; j++) out[i][j] = m[j][i];
@@ -83,7 +83,7 @@ inline vec<vec<T, D>, D> transpose(const vec<vec<T, D>, D>& m) {
 }
 
 template <class T, int D>
-inline vec<vec<T, D>, D> mat_mul(const vec<vec<T, D>, D>& mat1,
+vec<vec<T, D>, D> mat_mul(const vec<vec<T, D>, D>& mat1,
                                  const vec<vec<T, D>, D>& mat2) {
     vec<vec<T, D>, D> mat2T = transpose(mat2), out;
     for (int i = 0; i < D; i++)
@@ -92,7 +92,7 @@ inline vec<vec<T, D>, D> mat_mul(const vec<vec<T, D>, D>& mat1,
 }
 
 template <class T, int D>
-inline vec<T, D> mat_mul(const vec<vec<T, D>, D>& mat, const vec<T, D>& o) {
+vec<T, D> mat_mul(const vec<vec<T, D>, D>& mat, const vec<T, D>& o) {
     vec<T, D> out;
     for (int i = 0; i < D; i++) out[i] = o.dot(mat[i]);
     return out;
@@ -126,14 +126,14 @@ vec<vec<T, 4>, 4> quat_to_mat(const vec<T, 4>& q) {
 }
 
 template <class T>
-inline vec<vec<T, 4>, 4> cov3d(const vec<T, 4>& scale,
+vec<vec<T, 4>, 4> cov3d(const vec<T, 4>& scale,
                                const vec<vec<T, 4>, 4>& rot) {
     return mat_mul((transpose(rot), scale.squared().diag()), rot);
 }
 
 #define IMPL_FUN(fun)                                   \
     template <class T, int D>                           \
-    inline vec<T, D> fun(const vec<T, D>& a) {          \
+    vec<T, D> fun(const vec<T, D>& a) {          \
         vec<T, D> out;                                  \
         for (int i = 0; i < D; i++) out[i] = fun(a[i]); \
         return out;                                     \
@@ -147,14 +147,14 @@ using std::abs;
 IMPL_FUN(abs)
 
 template <class T, int D>
-inline vec<T, D> min(const vec<T, D>& a, T value) {
+vec<T, D> min(const vec<T, D>& a, T value) {
     vec<T, D> out;
     for (int i = 0; i < D; i++) out[i] = min(a[i], value);
     return out;
 }
 
 template <class T, int D>
-inline vec<T, D> max(const vec<T, D>& a, T value) {
+vec<T, D> max(const vec<T, D>& a, T value) {
     vec<T, D> out;
     for (int i = 0; i < D; i++) out[i] = max(a[i], value);
     return out;
