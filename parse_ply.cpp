@@ -26,45 +26,6 @@ struct GaussianData{
     }
 };
 
-GaussianData naive_gaussian() {
-    Eigen::MatrixXf xyz(4, 3);
-    xyz << 0, 0, 0,
-            1, 0, 0,
-            0, 1, 0,
-            0, 0, 1;
-    xyz = xyz.array().cast<float>();
-
-    Eigen::MatrixXf rot(4, 4);
-    rot << 1, 0, 0, 0,
-            1, 0, 0, 0,
-            1, 0, 0, 0,
-            1, 0, 0, 0;
-    rot = rot.array().cast<float>();
-
-    Eigen::MatrixXf scale(4, 3);
-    scale << 0.03, 0.03, 0.03,
-                0.2,  0.03, 0.03,
-                0.03, 0.2,  0.03,
-                0.03, 0.03, 0.2;
-    scale = scale.array().cast<float>();
-
-    Eigen::MatrixXf opacity(4, 1);
-    opacity << 1,
-                   1,
-                   1,
-                   1;
-    opacity = opacity.array().cast<float>();
-
-    Eigen::MatrixXf c(4, 3);
-    c << 1, 0, 1,
-            1, 0, 0,
-            0, 1, 0,
-            0, 0, 1;
-    c = (c.array() - 0.5) / 0.28209f;
-
-    return GaussianData{xyz, rot, scale, opacity, c};
-}
-
 GaussianData load_ply(const std::string &path){
     happly::PLYData data(path);
 
@@ -112,12 +73,10 @@ GaussianData load_ply(const std::string &path){
     features.col(0) = Eigen::Map<Eigen::VectorXf>(data.getElement("vertex").getProperty<float>("f_dc_0").data(), x.size());
     features.col(1) = Eigen::Map<Eigen::VectorXf>(data.getElement("vertex").getProperty<float>("f_dc_1").data(), x.size());
     features.col(2) = Eigen::Map<Eigen::VectorXf>(data.getElement("vertex").getProperty<float>("f_dc_2").data(), x.size());
-
-
-    for (int i = 0; i < extra_features; i++) {
-        std::vector<float> features_i = data.getElement("vertex").getProperty<float>("f_rest_" + std::to_string(i));
-        for (int j = 0; j < features_i.size(); ++j) {
-            features(j, i) = features_i[j]; // Check if we want to do it like this??
+    for (int i = 0; i < extra_features/3; i++) {
+        for(int j = 0; j < 3; j++){
+            int ind_feat = 3 + i*3 + j, ind_file = i + extra_features/3 * j;
+            features.col(ind_feat) = Eigen::Map<Eigen::VectorXf>(data.getElement("vertex").getProperty<float>("f_rest_" + std::to_string(ind_file)).data(), x.size());
         }
     }
 
@@ -139,7 +98,6 @@ GaussianData load_ply(const std::string &path){
 }
 
 int main() {
-    GaussianData example_data = naive_gaussian();
     GaussianData data = load_ply("data/point_cloud.ply");
     return 0; 
 }
