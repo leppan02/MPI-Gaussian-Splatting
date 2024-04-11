@@ -1,5 +1,5 @@
 #include "eigen/Eigen/Dense"
-#include "happly.h"
+#include "happly/happly.h"
 #include <vector>
 #include <iostream>
 #include <cmath>
