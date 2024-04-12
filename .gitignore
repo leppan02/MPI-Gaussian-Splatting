@@ -5,3 +5,4 @@ Eigen
 .vscode
 data
 __pycache__
+img*
