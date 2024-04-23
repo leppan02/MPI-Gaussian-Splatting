@@ -7,7 +7,7 @@
 #include "vec.hpp"
 
 struct Camera {
-    m4_t r_mat4, r_mat4_T, p_mat, complete_matrix;
+    m4_t r_mat4, r_mat4_T, p_mat;
     m3_t r_mat3, r_mat3_T;
     int image_size_x, image_size_y;
     d_t fov_x, px, py, f, htanx, htany;
@@ -32,7 +32,6 @@ struct Camera {
     }
     void update_matrix() {
         // Inexpensive caching
-        complete_matrix = p_mat.mat_mul(r_mat4);
         // clang-format off
         r_mat3 = m3_t{r_mat4[0][0], r_mat4[0][1], r_mat4[0][2],
                       r_mat4[1][0], r_mat4[1][1], r_mat4[1][2],
@@ -41,7 +40,7 @@ struct Camera {
         r_mat4_T = r_mat4.T();
         r_mat3_T = r_mat3.T();
     }
-    void pan(d_t rad) {
+    void tilt(d_t rad) {
         // Rotates around x axis
         d_t c = cos(rad), s = sin(rad);
         // clang-format off
@@ -53,7 +52,7 @@ struct Camera {
         r_mat4 = rot_mat.mat_mul(r_mat4);
         update_matrix();
     }
-    void tilt(d_t rad) {
+    void pan(d_t rad) {
         // Rotates around y axis
         d_t c = cos(rad), s = sin(rad);
         // clang-format off

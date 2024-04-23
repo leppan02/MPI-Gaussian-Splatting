@@ -1,13 +1,13 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "cpp_impl2/camera.hpp"
 #include "cpp_impl2/color.hpp"
 #include "cpp_impl2/default_types.hpp"
 #include "cpp_impl2/vec.hpp"
 #include "cpp_impl2/vec_utils.hpp"
-#include "eigen/Eigen/Dense"
 #include "happly/happly.h"
 
 #define DEBUG 1
@@ -22,7 +22,33 @@ struct GaussianData {
     std::vector<v4_t> xyz;
     std::vector<m3_t> cov3d;
     std::vector<ColorHarmonic> colors;
+    v4_t center(){
+        v4_t mn = MAXFLOAT + v4_t{0}, mx = (d_t)-1. * mn;
+        for(const auto &pos: xyz){
+            mn = min(pos, mn);
+            mx = max(pos, mx);
+        }
+        return (mx + mn)/(d_t)2.;
+    }
 };
+
+GaussianData test(){
+    GaussianData gaussian_data;
+    gaussian_data.xyz.emplace_back(v4_t{0, 0, 0, 1});
+    gaussian_data.xyz.emplace_back(v4_t{1, 0, 0, 1});
+    gaussian_data.xyz.emplace_back(v4_t{0, 1, 0, 1});
+    gaussian_data.xyz.emplace_back(v4_t{0, 0, -1, 1});
+    gaussian_data.cov3d.emplace_back(cov3d(v3_t{0.03, 0.03, 0.03},quat_to_mat(v4_t{1, 0, 0, 0})));
+    gaussian_data.cov3d.emplace_back(cov3d(v3_t{0.2, 0.03, 0.03},quat_to_mat(v4_t{1, 0, 0, 0})));
+    gaussian_data.cov3d.emplace_back(cov3d(v3_t{0.03, 0.2, 0.03},quat_to_mat(v4_t{1, 0, 0, 0})));
+    gaussian_data.cov3d.emplace_back(cov3d(v3_t{0.03, 0.03, 0.2},quat_to_mat(v4_t{1, 0, 0, 0})));
+    gaussian_data.colors.emplace_back(ColorHarmonic(array<v3_t, 16>{1,0,1}, 1.f));
+    gaussian_data.colors.emplace_back(ColorHarmonic(array<v3_t, 16>{1,0,0}, 1.f));
+    gaussian_data.colors.emplace_back(ColorHarmonic(array<v3_t, 16>{0,1,0}, 1.f));
+    gaussian_data.colors.emplace_back(ColorHarmonic(array<v3_t, 16>{0,1,1}, 1.f));
+    return gaussian_data;
+}
+
 
 GaussianData load_ply(const std::string &path) {
     happly::PLYData data(path);
@@ -50,11 +76,6 @@ GaussianData load_ply(const std::string &path) {
         data.getElement("vertex").getProperty<float>("scale_1");
     std::vector<float> scale_2 =
         data.getElement("vertex").getProperty<float>("scale_2");
-
-    auto exp_ = [](float a) { return exp(a); };
-    std::for_each(scale_0.begin(), scale_0.end(), exp_);
-    std::for_each(scale_1.begin(), scale_1.end(), exp_);
-    std::for_each(scale_2.begin(), scale_2.end(), exp_);
 
     // Load cov3d
     for (size_t i = 0; i < rot_x.size(); i++) {
@@ -110,26 +131,28 @@ void draw_gaussian(std::vector<std::vector<v3_t>> &image, const Camera &cam,
                    const v4_t &dir, v4_t xyz, m3_t cov3d,
                    ColorHarmonic color_h) {
     auto d = PlotData(cam, xyz, cov3d);
+    if(d.behind)return;
     auto color = color_h.get_color(dir);
 
     int start_x = max(0, (int)round(d.x_c - d.x_r));
     int start_y = max(0, (int)round(d.y_c - d.y_r));
     int end_x = min(cam.image_size_x-1, (int)round(d.x_c + d.x_r));
     int end_y = min(cam.image_size_y-1, (int)round(d.y_c + d.y_r));
-    for (int x = start_x; x <= end_x; x++) {
-        for (int y = start_y; y <= end_y; y++) {
+    
+    for (int y = start_y; y <= end_y; y++) {
+        for (int x = start_x; x <= end_x; x++) {
             float c_x = x - d.x_c, c_y = y - d.y_c;
             float power =
                 -(d.A * c_x * c_x + d.C * c_y * c_y) / 2.0f - d.B * c_x * c_y;
             float alpha = min(0.99f, color_h.opacity * exp(power));
-            image[x][y] = color * alpha + image[x][y] * (1 - alpha);
+            image[y][x] = color * alpha + image[y][x] * (1 - alpha);
         }
     }
 }
 
 auto render(const Camera &cam, const GaussianData &data) {
     std::vector<std::vector<v3_t>> image(
-        cam.image_size_x, std::vector<v3_t>(cam.image_size_y, {1,1,1}));
+        cam.image_size_y, std::vector<v3_t>(cam.image_size_x, {1,1,1}));
 
     // Transform location
     vector<v4_t> trans_xyz(data.xyz.size());
@@ -154,18 +177,22 @@ void store_image(const std::vector<std::vector<v3_t>> &image, const std::string 
     std::ofstream file;
     file.open (file_name, std::ios::binary);
     for(int i = 0; i < h; i++)for(int j = 0; j < w; j++)for(int c = 0; c < 3; c++){
-        file << (unsigned char)round(max(0.f, min(image[h-i-1][j][c] * 256.f, 255.f))); 
+        file << (unsigned char)round(max(0.f, min(image[i][j][c] * 256.f, 255.f))); 
     }
     file.close();
 }
 
 int main() {
-    Camera cam(4000, 4000, (d_t)M_PI / 2.f);
-    cam.roll(M_PI/2);
-    cam.tilt(-(d_t)M_PI / 6.f);
-    cam.pan(-(d_t)M_PI / 4.f);
-    cam.move_to(v4_t{-1.5f, 0, -2});
+    Camera cam(1000, 1000, (d_t)M_PI / 2.f);
     GaussianData data = load_ply("data/point_cloud.ply");
+    // GaussianData data = test();
+    cam.move_to(data.center());
+    // cam.roll(M_PI/2);
+    // cam.pan((d_t)M_PI / 2.f);
+    cam.tilt(-(d_t)M_PI / 4.f);
+    // cam.pan((d_t)M_PI);
+    cam.tilt((d_t)M_PI / 8.f);
+    cam.move_to(v4_t{0, 0, -1.5});
     DEBUG_PRINT("Step 1")
     auto image = render(cam, data);
     DEBUG_PRINT("Step 2")
