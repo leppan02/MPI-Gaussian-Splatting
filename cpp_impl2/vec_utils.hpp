@@ -16,7 +16,7 @@ mat<T, 3, 3> quat_to_mat(const vec<T, 4>& q) {
 }
 
 template <typename T>
-mat<T, 3, 3> cov3d(const vec<T, 3>& scale, const mat<T, 3, 3>& rot) {
+mat<T, 3, 3> calc_cov3d(const vec<T, 3>& scale, const mat<T, 3, 3>& rot) {
     auto rot_T = rot.T();
     return rot_T.mat_mul_diag(scale.squared()).mat_mul_T(rot_T);
 }
