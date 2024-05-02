@@ -5,6 +5,12 @@
 #include "vec.hpp"
 
 template <typename T>
+/**
+ * Converts a quaternion to a 3x3 matrix.
+ *
+ * @param q The quaternion to convert.
+ * @return The resulting 3x3 matrix.
+ */
 mat<T, 3, 3> quat_to_mat(const vec<T, 4>& q) {
     // clang-format off
     T q0=q[0],q1=q[1],q2=q[2],q3=q[3];
@@ -16,6 +22,13 @@ mat<T, 3, 3> quat_to_mat(const vec<T, 4>& q) {
 }
 
 template <typename T>
+/**
+ * Calculates the covariance matrix for a 3D point cloud.
+ *
+ * @param scale The scaling factors along the x, y, and z axes.
+ * @param rot The rotation matrix representing the orientation.
+ * @return The covariance matrix.
+ */
 mat<T, 3, 3> calc_cov3d(const vec<T, 3>& scale, const mat<T, 3, 3>& rot) {
     auto rot_T = rot.T();
     return rot_T.mat_mul_diag(scale.squared()).mat_mul_T(rot_T);
@@ -25,6 +38,15 @@ struct PlotData {
     float A, B, C, x_r, y_r, x_c, y_c;
     bool behind;
     template <typename T>
+    /**
+     * @brief Constructs a PlotData object.
+     *
+     * This constructor initializes a PlotData object with the given parameters.
+     *
+     * @param camera The camera object used for plotting.
+     * @param g_pos_cam The position of the object in camera coordinates.
+     * @param cov3d The 3x3 covariance matrix.
+     */
     PlotData(const Camera& camera, const vec<T, 4>& g_pos_cam,
              const mat<T, 3, 3>& cov3d) {
         const T limx = 1.3f * camera.htanx * g_pos_cam[2],

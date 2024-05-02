@@ -6,8 +6,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "cpp_impl2/include.hpp"
-#include "happly/happly.h"
+#include "include.hpp"
+#include "../happly/happly.h"
 
 #define DEBUG 1
 
@@ -17,14 +17,29 @@
 #define DEBUG_PRINT(ARG)
 #endif
 
+/**
+ * @brief Struct representing Gaussian data.
+ */
 struct GaussianData {
-    // Homogenous {x,y,z,1}
-    std::vector<v4_t> xyz;
-    std::vector<m3_t> cov3d;
-    std::vector<ColorHarmonic> colors;
+    std::vector<v4_t> xyz;               ///< Vector of 4D positions
+    std::vector<m3_t> cov3d;             ///< Vector of 3x3 covariance matrices
+    std::vector<ColorHarmonic> colors;   ///< Vector of color harmonics
+
+    /**
+     * @brief Get the size of the Gaussian data.
+     * @param ply_data The PLY data object.
+     * @return The size of the Gaussian data.
+     */
     static size_t get_size(happly::PLYData &ply_data) {
         return ply_data.getElement("vertex").count;
     }
+
+    /**
+     * @brief Load the XYZ positions from the PLY data.
+     * @param ply_data The PLY data object.
+     * @param el The indices of the elements to load.
+     * @return The vector of XYZ positions.
+     */
     static std::vector<v4_t> load_xyz(happly::PLYData &ply_data,
                                       const vector<int> &el) {
         std::vector<d_t> x =
@@ -41,6 +56,13 @@ struct GaussianData {
         }
         return result;
     }
+
+    /**
+     * @brief Load the 3D covariance matrices from the PLY data.
+     * @param ply_data The PLY data object.
+     * @param el The indices of the elements to load.
+     * @return The vector of 3D covariance matrices.
+     */
     static std::vector<m3_t> load_cov3d(happly::PLYData &ply_data,
                                         const vector<int> &el) {
         std::vector<d_t> rot_x =
@@ -69,6 +91,13 @@ struct GaussianData {
         }
         return result;
     }
+
+    /**
+     * @brief Load the colors from the PLY data.
+     * @param ply_data The PLY data object.
+     * @param el The indices of the elements to load.
+     * @return The vector of color harmonics.
+     */
     static std::vector<ColorHarmonic> load_colors(happly::PLYData &ply_data,
                                                   const vector<int> &el) {
         // Load opacity
@@ -105,11 +134,21 @@ struct GaussianData {
         }
         return result;
     }
+
+    /**
+     * @brief Load the Gaussian data from the PLY data.
+     * @param ply_data The PLY data object.
+     * @param el The indices of the elements to load.
+     */
     void load_data(happly::PLYData &ply_data, const vector<int> &el) {
         xyz = load_xyz(ply_data, el);
         cov3d = load_cov3d(ply_data, el);
         colors = load_colors(ply_data, el);
     }
+
+    /**
+     * @brief Load test data for the Gaussian data.
+     */
     void load_test() {
         xyz = {v4_t{0, 0, 0, 1}, v4_t{1, 0, 0, 1}, v4_t{0, 1, 0, 1},
                v4_t{0, 0, -1, 1}};
@@ -123,6 +162,12 @@ struct GaussianData {
                   ColorHarmonic(array<v3_t, 16>{0, 1, 0}, 1.f),
                   ColorHarmonic(array<v3_t, 16>{0, 1, 1}, 1.f)};
     }
+
+    /**
+     * @brief Get the range of XYZ positions.
+     * @param xyz The vector of XYZ positions.
+     * @return The range of XYZ positions.
+     */
     static std::pair<v4_t, v4_t> range(std::vector<v4_t> const &xyz) {
         std::pair<v4_t, v4_t> res = {MAXFLOAT + v4_t{0},
                                      MAXFLOAT * -1 + v4_t{0}};
@@ -134,6 +179,17 @@ struct GaussianData {
     }
 };
 
+/**
+ * Sorts the indices of a span of positions in the given direction.
+ *
+ * This function sorts the indices of a span of positions based on their
+ * projection onto the given direction vector. The sorting is done in ascending
+ * order.
+ *
+ * @param pos The vector of positions.
+ * @param dir The direction vector.
+ * @param idx The span of indices to be sorted.
+ */
 void sort_span_in_direction(const vector<v4_t> &pos, const v4_t &dir,
                             std::span<int> idx) {
     std::unordered_map<int, d_t> depth;
@@ -142,23 +198,39 @@ void sort_span_in_direction(const vector<v4_t> &pos, const v4_t &dir,
                 [&depth](int i1, int i2) { return depth[i1] < depth[i2]; });
 }
 
+/**
+ * Retrieves a quad block based on the given ID, depth, and position vector.
+ *
+ * @param id The ID of the quad block.
+ * @param depth The depth of the quad block.
+ * @param pos The position vector containing v4_t elements.
+ * @return A vector of integers representing the quad block.
+ */
 vector<int> get_quad_block(int id, int depth, const vector<v4_t> &pos) {
     int l = 0, r = pos.size();
     v4_t dirs[3] = {v4_t{1, 0, 0, 0}, v4_t{0, 1, 0, 0}, v4_t{0, 0, 1, 0}};
     vector<int> idx(pos.size());
     std::iota(idx.begin(), idx.end(), 0);
     for (int i = 0; i < depth; i++) {
-        std::span<int> view(idx.begin()+l, idx.begin()+r);
-        sort_span_in_direction(pos, dirs[i%3], view);
+        std::span<int> view(idx.begin() + l, idx.begin() + r);
+        sort_span_in_direction(pos, dirs[i % 3], view);
         if (id & 1)
             l = (l + r) / 2;
         else
             r = (l + r) / 2;
         id >>= 1;
     }
-    return std::vector<int>(idx.begin()+l, idx.begin()+r);
+    return std::vector<int>(idx.begin() + l, idx.begin() + r);
 }
 
+/**
+ * Sorts the positions in the given vector `pos` in the direction specified by
+ * the vector `dir`.
+ *
+ * @param pos The vector of positions to be sorted.
+ * @param dir The direction vector along which the positions should be sorted.
+ * @return A vector of integers representing the sorted positions.
+ */
 vector<int> sort_positions_in_direction(const vector<v4_t> &pos,
                                         const v4_t &dir) {
     vector<int> idx(pos.size());
@@ -168,16 +240,34 @@ vector<int> sort_positions_in_direction(const vector<v4_t> &pos,
     return idx;
 }
 
+/**
+ * @brief Represents an image with pixel values and an alpha mask.
+ */
 struct Image {
-    int w, h;
-    std::vector<std::vector<v3_t>> image;
-    std::vector<std::vector<float>> alpha_mask;
+    int w, h;                             /**< Width and height of the image. */
+    std::vector<std::vector<v3_t>> image; /**< Pixel values of the image. */
+    std::vector<std::vector<float>> alpha_mask; /**< Alpha mask of the image. */
+
+    /**
+     * @brief Constructs an Image object with the given camera.
+     *
+     * @param cam The camera object used to determine the image size.
+     */
     Image(Camera const &cam) : w(cam.image_size_x), h(cam.image_size_y) {
         image =
             std::vector<std::vector<v3_t>>(h, std::vector<v3_t>(w, {1, 1, 1}));
         alpha_mask =
             std::vector<std::vector<float>>(h, std::vector<float>(w, 1));
     }
+
+    /**
+     * @brief Combines the current image with another image.
+     *
+     * The pixel values of the current image are blended with the pixel values
+     * of the provided image based on the alpha mask.
+     *
+     * @param behind The image to be combined with the current image.
+     */
     void combine(Image const &behind) {
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
@@ -186,8 +276,34 @@ struct Image {
             }
         }
     }
+    /**
+     * Stores the image with the given file name.
+     *
+     * @param file_name The name of the file to store the image.
+     */
+    void store_image(const std::string &file_name) const {
+        std::ofstream file;
+        file.open(file_name, std::ios::binary);
+        for (int i = 0; i < h; i++)
+            for (int j = 0; j < w; j++)
+                for (int c = 0; c < 3; c++) {
+                    file << (unsigned char)max(
+                        0, min((int)floor(image[i][j][c] * 256.f), 0xff));
+                }
+        file.close();
+    }
 };
 
+/**
+ * Draws a Gaussian splat on the given image using the specified camera, direction, position, covariance, and color.
+ *
+ * @param image The image on which to draw the Gaussian splat.
+ * @param cam The camera used to capture the image.
+ * @param dir The direction of the Gaussian splat.
+ * @param xyz The position of the Gaussian splat.
+ * @param cov3d The covariance matrix of the Gaussian splat.
+ * @param color_h The color harmonic used to determine the color of the Gaussian splat.
+ */
 void draw_gaussian(Image &image, const Camera &cam, const v4_t &dir, v4_t xyz,
                    m3_t cov3d, ColorHarmonic color_h) {
     auto d = PlotData(cam, xyz, cov3d);
@@ -211,6 +327,13 @@ void draw_gaussian(Image &image, const Camera &cam, const v4_t &dir, v4_t xyz,
     }
 }
 
+/**
+ * Renders the scene using the given camera and Gaussian data.
+ *
+ * @param cam The camera object used for rendering.
+ * @param data The Gaussian data containing the scene information.
+ * @return The rendered image.
+ */
 auto render(const Camera &cam, const GaussianData &data) {
     Image image(cam);
 
@@ -232,35 +355,21 @@ auto render(const Camera &cam, const GaussianData &data) {
     return image;
 }
 
-void store_image(const std::vector<std::vector<v3_t>> &image,
-                 const std::string &file_name) {
-    int h = image.size(), w = image[0].size();
-    std::ofstream file;
-    file.open(file_name, std::ios::binary);
-    for (int i = 0; i < h; i++)
-        for (int j = 0; j < w; j++)
-            for (int c = 0; c < 3; c++) {
-                file << (unsigned char)max(
-                    0, min((int)floor(image[i][j][c] * 256.f), 0xff));
-            }
-    file.close();
-}
-
 int main() {
     Camera cam(1000, 1000, (d_t)M_PI / 2.f);
-    
+
     std::string f_name = "data/point_cloud.ply";
     happly::PLYData ply_data(f_name);
     GaussianData data;
-    
+
     std::vector<int> el(GaussianData::get_size(ply_data));
     std::iota(el.begin(), el.end(), 0);
-    
+
     auto xyz = GaussianData::load_xyz(ply_data, el);
     auto [mn, mx] = GaussianData::range(xyz);
     cam.move_to((mn + mx) / (d_t)2.);
 
-    data.load_data(ply_data, get_quad_block(0b110,3,xyz));
+    data.load_data(ply_data, get_quad_block(0b110, 3, xyz));
     // GaussianData data = test();
     // cam.roll(M_PI/2);
     // cam.pan((d_t)M_PI / 2.f);
@@ -271,7 +380,7 @@ int main() {
     DEBUG_PRINT("Step 1")
     Image front_image = render(cam, data);
     DEBUG_PRINT("Step 2")
-    store_image(front_image.image, "img.bmp");
+    front_image.store_image("img.bmp");
     DEBUG_PRINT("Step 3")
     return 0;
 }
