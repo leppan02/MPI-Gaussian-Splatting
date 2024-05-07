@@ -1,6 +1,7 @@
+#include <chrono>
+
 #include "generate_image.hpp"
 #include "mpi.h"
-#include <chrono>
 
 MPI_Comm comm = MPI_COMM_WORLD;
 int world_size;
@@ -70,13 +71,13 @@ int run() {
     timestamp(loaded);
 
     auto image = render(cam, data);
-    if(world_rank == 0){
+    if (world_rank == 0) {
         DEBUG_PRINT("Data per process: " << data.xyz.size())
     }
-    
+
     timestamp(rendered);
     for (int jump = 1; jump < world_size; jump *= 2) {
-        if(world_rank % (jump * 2) == 0){
+        if (world_rank % (jump * 2) == 0) {
             auto recv_rank = world_rank + jump;
             if (recv_rank >= world_size) continue;
             auto o_image = Image(cam);
@@ -89,18 +90,19 @@ int run() {
         }
     }
     timestamp(comm_done);
-    if(world_rank == 0){
+    if (world_rank == 0) {
         image.add_background({1, 1, 1});
         image.store_image("img.bmp");
     }
-    if(world_rank == 0){
-        DEBUG_PRINT("Open file: "<<diff(start, openfile)<<"ms")
-        DEBUG_PRINT("Load positions: "<<diff(openfile, loaded_xyz)<<"ms")
-        DEBUG_PRINT("Sorting: "<<diff(loaded_xyz, sorting)<<"ms")
-        DEBUG_PRINT("Loading: "<<diff(sorting, loaded)<<"ms")
-        DEBUG_PRINT("Rendering: "<<diff(loaded, rendered)<<"ms")
-        DEBUG_PRINT("Communication: "<<diff(rendered, comm_done)<<"ms\n")
-    }  
+    if (world_rank == 0) {
+        DEBUG_PRINT("Processes: " << world_size)
+        DEBUG_PRINT("Open file: " << diff(start, openfile) << "ms")
+        DEBUG_PRINT("Load positions: " << diff(openfile, loaded_xyz) << "ms")
+        DEBUG_PRINT("Sorting: " << diff(loaded_xyz, sorting) << "ms")
+        DEBUG_PRINT("Loading: " << diff(sorting, loaded) << "ms")
+        DEBUG_PRINT("Rendering: " << diff(loaded, rendered) << "ms")
+        DEBUG_PRINT("Communication: " << diff(rendered, comm_done) << "ms\n")
+    }
     return 0;
 }
 
@@ -108,9 +110,15 @@ int main(int argc, char **argv) {
     MPI_Init(&argc, &argv);
     MPI_Comm_size(comm, &world_size);
     MPI_Comm_rank(comm, &world_rank);
-
-    auto ret = run();
-    if(ret!=0)return ret;
+    int real_size = world_size;
+    for (world_size = 1; world_size <= real_size; world_size++) {
+        if (world_rank < world_size) {
+            for (int i = 0; i < 10; i++) {
+                auto ret = run();
+                if (ret != 0) return ret;
+            }
+        }
+    }
 
     MPI_Finalize();
     return 0;
