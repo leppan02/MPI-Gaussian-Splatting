@@ -2,9 +2,11 @@ import subprocess
 
 # r = subprocess.run(["g++", "-std=c++20", "src/main.cpp"])
 # r = subprocess.run(["g++", "-std=c++20", "-Wall","-fsanitize=address" ,"-pedantic",  "src/main_mpi.cpp"])
-r = subprocess.run(["g++", "-std=c++20", "-O3", "-Wall","-fsanitize=address" , "src/main_mpi.cpp"])
+r = subprocess.run(["mpiCC", "-std=c++20", "-O3", "src/main_mpi.cpp"])
 assert r.returncode == 0
-r = subprocess.run(["./a.out"])
+from time import time
+for i in range(1,5):
+    r = subprocess.run(["mpirun","--oversubscribe", "-n", str(i), "./a.out"])
 assert r.returncode == 0
 
 import numpy as np

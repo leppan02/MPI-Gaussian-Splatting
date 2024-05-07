@@ -184,71 +184,21 @@ void sort_span_in_direction(const vector<v4_t> &pos, const v4_t &dir,
                 [&depth](int i1, int i2) { return depth[i1] < depth[i2]; });
 }
 
-struct QuadNode {
-    std::span<int> idx;
-    v4_t mn, mx;
-    QuadNode(std::span<int> idx, std::vector<v4_t> const &xyz)
-        : idx(idx), mn(MAXFLOAT + v4_t{0}), mx(MAXFLOAT * -1 + v4_t{0}) {
-        for (auto i : idx) {
-            mn = min(xyz[i], mn);
-            mx = max(xyz[i], mx);
-        }
-    }
-};
-
-struct QuadTree {
+struct Blocks {
     vector<int> idx;
-    vector<QuadNode> children;
-    vector<vector<v4_t>> cuts;
-    const v4_t dirs[3] = {v4_t{1, 0, 0, 0}, v4_t{0, 1, 0, 0}, v4_t{0, 0, 1, 0}}; 
-    int depth;
-    QuadTree(int _depth, const vector<v4_t> &xyz): depth(_depth) {
-        idx = vector<int>(xyz.size());
+    vector<std::span<int>> spans;
+    int n;
+    Blocks(int _n, v4_t dir, const vector<v4_t> &xyz) : n(_n) {
+        idx.resize(xyz.size());
         std::iota(idx.begin(), idx.end(), 0);
-        vector<vector<std::span<int>>> views;
-        views.push_back({std::span<int>(idx)});
-        for (int i = 0; i < depth; i++) {
-            views.push_back({});
-            cuts.push_back({});
-            auto dir = dirs[i % 3];
-            for (auto v : views[i]) {
-                sort_span_in_direction(xyz, dir, v);
-                auto s1 = v.subspan(0, v.size() / 2);
-                auto s2 = v.subspan(v.size() / 2);
-                views[i + 1].push_back(s1);
-                views[i + 1].push_back(s2);
-                cuts[i].push_back({xyz[s1.back()]});
-            }
+        std::span<int> s(idx);
+        sort_span_in_direction(xyz, dir, s);
+        int n_el = s.size() / n;
+        int extra_el = s.size() % n;
+        for (int i = 0; i < n; i++) {
+            spans.emplace_back(
+                s.subspan(i * n_el, n_el + (i < extra_el ? 1 : 0)));
         }
-        for (auto v : views[depth]) {
-            children.emplace_back(v, xyz);
-        }
-    }
-    vector<int> order(v4_t camera_pos){
-        vector<vector<std::tuple<int, int>>> sorted_ranges({{std::tuple<int, int>(0, children.size())}});
-        for (int i = 0; i < depth; i++) {
-            auto dir = dirs[i % 3];
-            vector<std::tuple<int, int>> new_range = {};
-            for(size_t j = 0; j < cuts[i].size(); j++){
-                auto [start, end] = sorted_ranges.back()[j];
-                int mid = (start + end) / 2;
-                std::tuple<int, int>first_half = {start, mid}, second_half = {mid, end};
-
-                if (camera_pos.dot(dir) > cuts[i][j].dot(dir)){
-                    new_range.push_back(first_half);
-                    new_range.push_back(second_half);
-                }else{
-                    new_range.push_back(second_half);
-                    new_range.push_back(first_half);
-                }
-            }
-            sorted_ranges.push_back(new_range);
-        }
-        vector<int> result;
-        for(auto [start, _end] : sorted_ranges.back()){
-            result.push_back(start);
-        }
-        return result;
     }
 };
 
@@ -273,9 +223,9 @@ vector<int> sort_positions_in_direction(const vector<v4_t> &pos,
  * @brief Represents an image with pixel values and an alpha mask.
  */
 struct Image {
-    int w, h;                             /**< Width and height of the image. */
-    std::vector<std::vector<v3_t>> image; /**< Pixel values of the image. */
-    std::vector<std::vector<float>> alpha_mask; /**< Alpha mask of the image. */
+    int w, h;                      /**< Width and height of the image. */
+    std::vector<v3_t> image;       /**< Pixel values of the image. */
+    std::vector<float> alpha_mask; /**< Alpha mask of the image. */
 
     /**
      * @brief Constructs an Image object with the given camera.
@@ -283,10 +233,8 @@ struct Image {
      * @param cam The camera object used to determine the image size.
      */
     Image(Camera const &cam) : w(cam.image_size_x), h(cam.image_size_y) {
-        image =
-            std::vector<std::vector<v3_t>>(h, std::vector<v3_t>(w, {1, 1, 1}));
-        alpha_mask =
-            std::vector<std::vector<float>>(h, std::vector<float>(w, 1));
+        image = std::vector<v3_t>(h * w, {0, 0, 0});
+        alpha_mask = std::vector<float>(h * w, 1);
     }
 
     /**
@@ -300,11 +248,32 @@ struct Image {
     void combine(Image const &behind) {
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                image[y][x] = image[y][x] * (1 - alpha_mask[y][x]) +
-                              behind.image[y][x] * alpha_mask[y][x];
+                auto idx = y * w + x;
+                image[idx] =
+                    image[idx] + behind.image[idx] * alpha_mask[idx];
+                alpha_mask[idx] *= behind.alpha_mask[idx];
             }
         }
     }
+
+    /**
+     * @brief Combines the current image with another image.
+     *
+     * The pixel values of the current image are blended with the pixel values
+     * of the provided image based on the alpha mask.
+     *
+     * @param behind The image to be combined with the current image.
+     */
+    void add_background(v3_t color) {
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                auto idx = y * w + x;
+                image[idx] = image[idx] + color * alpha_mask[idx];
+                alpha_mask[idx] = 0;
+            }
+        }
+    }
+
     /**
      * Stores the image with the given file name.
      *
@@ -313,12 +282,10 @@ struct Image {
     void store_image(const std::string &file_name) const {
         std::ofstream file;
         file.open(file_name, std::ios::binary);
-        for (int i = 0; i < h; i++)
-            for (int j = 0; j < w; j++)
-                for (int c = 0; c < 3; c++) {
-                    file << (unsigned char)max(
-                        0, min((int)floor(image[i][j][c] * 256.f), 0xff));
-                }
+        for (auto p : image)
+            for (int c = 0; c < 3; c++)
+                file << (unsigned char)max(0,
+                                           min((int)floor(p[c] * 256.f), 0xff));
         file.close();
     }
 };
@@ -348,12 +315,14 @@ void draw_gaussian(Image &image, const Camera &cam, const v4_t &dir, v4_t xyz,
     int end_y = min(cam.image_size_y, (int)round(d.y_c + d.y_r) + 1);
     for (int y = start_y; y < end_y; y++) {
         for (int x = start_x; x < end_x; x++) {
+            auto idx = y * cam.image_size_x + x;
             float c_x = x - d.x_c, c_y = y - d.y_c;
             float power =
                 -(d.A * c_x * c_x + d.C * c_y * c_y) / 2.0f - d.B * c_x * c_y;
             float alpha = min(0.99f, color_h.opacity * exp(power));
-            image.image[y][x] = color * alpha + image.image[y][x] * (1 - alpha);
-            image.alpha_mask[y][x] *= (1 - alpha);
+            image.image[idx] =
+                image.image[idx] + image.alpha_mask[idx] * alpha * color;
+            image.alpha_mask[idx] *= (1 - alpha);
         }
     }
 }
@@ -374,11 +343,10 @@ auto render(const Camera &cam, const GaussianData &data) {
         trans_xyz[di] = cam.r_mat4.mat_mul(data.xyz[di]);
 
     // Sort on depth
-    const auto c_dir = v4_t{0, 0, -1, 0};
+    const auto c_dir = v4_t{0, 0, 1, 0};
     vector<int> sort_ind = sort_positions_in_direction(trans_xyz, c_dir);
 
     v4_t camera_trans = cam.global_position();
-    DEBUG_PRINT("Drawing")
     for (auto di : sort_ind) {
         draw_gaussian(image, cam, (data.xyz[di] - camera_trans).normalized(),
                       trans_xyz[di], data.cov3d[di], data.colors[di]);
