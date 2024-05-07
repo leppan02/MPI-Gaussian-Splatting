@@ -1,14 +1,3 @@
-#include <algorithm>
-#include <cmath>
-#include <iostream>
-#include <numeric>
-#include <span>
-#include <unordered_map>
-#include <vector>
-
-#include "include.hpp"
-#include "../happly/happly.h"
-
 #include "generate_image.hpp"
 
 int main() {

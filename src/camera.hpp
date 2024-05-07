@@ -133,5 +133,10 @@ struct Camera {
      * @param v The position vector.
      */
     void move_to(const v4_t &v) { move_to(v3_t{v[0], v[1], v[2]}); }
+
+    /**
+     * @brief Return global position of camera.
+     */
+    v4_t global_position() const { return r_mat4_T[3]; }
 };
 #endif

@@ -3,11 +3,12 @@
 #include <iostream>
 #include <numeric>
 #include <span>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
-#include "include.hpp"
 #include "../happly/happly.h"
+#include "include.hpp"
 
 #define DEBUG 1
 
@@ -21,9 +22,9 @@
  * @brief Struct representing Gaussian data.
  */
 struct GaussianData {
-    std::vector<v4_t> xyz;               ///< Vector of 4D positions
-    std::vector<m3_t> cov3d;             ///< Vector of 3x3 covariance matrices
-    std::vector<ColorHarmonic> colors;   ///< Vector of color harmonics
+    std::vector<v4_t> xyz;              ///< Vector of 4D positions
+    std::vector<m3_t> cov3d;            ///< Vector of 3x3 covariance matrices
+    std::vector<ColorHarmonic> colors;  ///< Vector of color harmonics
 
     /**
      * @brief Get the size of the Gaussian data.
@@ -41,7 +42,7 @@ struct GaussianData {
      * @return The vector of XYZ positions.
      */
     static std::vector<v4_t> load_xyz(happly::PLYData &ply_data,
-                                      const vector<int> &el) {
+                                      std::span<int> el) {
         std::vector<d_t> x =
             ply_data.getElement("vertex").getProperty<float>("x");
         std::vector<d_t> y =
@@ -64,7 +65,7 @@ struct GaussianData {
      * @return The vector of 3D covariance matrices.
      */
     static std::vector<m3_t> load_cov3d(happly::PLYData &ply_data,
-                                        const vector<int> &el) {
+                                        std::span<int> el) {
         std::vector<d_t> rot_x =
             ply_data.getElement("vertex").getProperty<float>("rot_0");
         std::vector<d_t> rot_y =
@@ -99,7 +100,7 @@ struct GaussianData {
      * @return The vector of color harmonics.
      */
     static std::vector<ColorHarmonic> load_colors(happly::PLYData &ply_data,
-                                                  const vector<int> &el) {
+                                                  std::span<int> el) {
         // Load opacity
         std::vector<d_t> opacity =
             ply_data.getElement("vertex").getProperty<float>("opacity");
@@ -140,7 +141,7 @@ struct GaussianData {
      * @param ply_data The PLY data object.
      * @param el The indices of the elements to load.
      */
-    void load_data(happly::PLYData &ply_data, const vector<int> &el) {
+    void load_data(happly::PLYData &ply_data, const std::span<int> &el) {
         xyz = load_xyz(ply_data, el);
         cov3d = load_cov3d(ply_data, el);
         colors = load_colors(ply_data, el);
@@ -161,21 +162,6 @@ struct GaussianData {
                   ColorHarmonic(array<v3_t, 16>{1, 0, 0}, 1.f),
                   ColorHarmonic(array<v3_t, 16>{0, 1, 0}, 1.f),
                   ColorHarmonic(array<v3_t, 16>{0, 1, 1}, 1.f)};
-    }
-
-    /**
-     * @brief Get the range of XYZ positions.
-     * @param xyz The vector of XYZ positions.
-     * @return The range of XYZ positions.
-     */
-    static std::pair<v4_t, v4_t> range(std::vector<v4_t> const &xyz) {
-        std::pair<v4_t, v4_t> res = {MAXFLOAT + v4_t{0},
-                                     MAXFLOAT * -1 + v4_t{0}};
-        for (const auto &pos : xyz) {
-            res.first = min(pos, res.first);
-            res.second = max(pos, res.second);
-        }
-        return res;
     }
 };
 
@@ -198,30 +184,73 @@ void sort_span_in_direction(const vector<v4_t> &pos, const v4_t &dir,
                 [&depth](int i1, int i2) { return depth[i1] < depth[i2]; });
 }
 
-/**
- * Retrieves a quad block based on the given ID, depth, and position vector.
- *
- * @param id The ID of the quad block.
- * @param depth The depth of the quad block.
- * @param pos The position vector containing v4_t elements.
- * @return A vector of integers representing the quad block.
- */
-vector<int> get_quad_block(int id, int depth, const vector<v4_t> &pos) {
-    int l = 0, r = pos.size();
-    v4_t dirs[3] = {v4_t{1, 0, 0, 0}, v4_t{0, 1, 0, 0}, v4_t{0, 0, 1, 0}};
-    vector<int> idx(pos.size());
-    std::iota(idx.begin(), idx.end(), 0);
-    for (int i = 0; i < depth; i++) {
-        std::span<int> view(idx.begin() + l, idx.begin() + r);
-        sort_span_in_direction(pos, dirs[i % 3], view);
-        if (id & 1)
-            l = (l + r) / 2;
-        else
-            r = (l + r) / 2;
-        id >>= 1;
+struct QuadNode {
+    std::span<int> idx;
+    v4_t mn, mx;
+    QuadNode(std::span<int> idx, std::vector<v4_t> const &xyz)
+        : idx(idx), mn(MAXFLOAT + v4_t{0}), mx(MAXFLOAT * -1 + v4_t{0}) {
+        for (auto i : idx) {
+            mn = min(xyz[i], mn);
+            mx = max(xyz[i], mx);
+        }
     }
-    return std::vector<int>(idx.begin() + l, idx.begin() + r);
-}
+};
+
+struct QuadTree {
+    vector<int> idx;
+    vector<QuadNode> children;
+    vector<vector<v4_t>> cuts;
+    const v4_t dirs[3] = {v4_t{1, 0, 0, 0}, v4_t{0, 1, 0, 0}, v4_t{0, 0, 1, 0}}; 
+    int depth;
+    QuadTree(int _depth, const vector<v4_t> &xyz): depth(_depth) {
+        idx = vector<int>(xyz.size());
+        std::iota(idx.begin(), idx.end(), 0);
+        vector<vector<std::span<int>>> views;
+        views.push_back({std::span<int>(idx)});
+        for (int i = 0; i < depth; i++) {
+            views.push_back({});
+            cuts.push_back({});
+            auto dir = dirs[i % 3];
+            for (auto v : views[i]) {
+                sort_span_in_direction(xyz, dir, v);
+                auto s1 = v.subspan(0, v.size() / 2);
+                auto s2 = v.subspan(v.size() / 2);
+                views[i + 1].push_back(s1);
+                views[i + 1].push_back(s2);
+                cuts[i].push_back({xyz[s1.back()]});
+            }
+        }
+        for (auto v : views[depth]) {
+            children.emplace_back(v, xyz);
+        }
+    }
+    vector<int> order(v4_t camera_pos){
+        vector<vector<std::tuple<int, int>>> sorted_ranges({{std::tuple<int, int>(0, children.size())}});
+        for (int i = 0; i < depth; i++) {
+            auto dir = dirs[i % 3];
+            vector<std::tuple<int, int>> new_range = {};
+            for(size_t j = 0; j < cuts[i].size(); j++){
+                auto [start, end] = sorted_ranges.back()[j];
+                int mid = (start + end) / 2;
+                std::tuple<int, int>first_half = {start, mid}, second_half = {mid, end};
+
+                if (camera_pos.dot(dir) > cuts[i][j].dot(dir)){
+                    new_range.push_back(first_half);
+                    new_range.push_back(second_half);
+                }else{
+                    new_range.push_back(second_half);
+                    new_range.push_back(first_half);
+                }
+            }
+            sorted_ranges.push_back(new_range);
+        }
+        vector<int> result;
+        for(auto [start, _end] : sorted_ranges.back()){
+            result.push_back(start);
+        }
+        return result;
+    }
+};
 
 /**
  * Sorts the positions in the given vector `pos` in the direction specified by
@@ -295,14 +324,16 @@ struct Image {
 };
 
 /**
- * Draws a Gaussian splat on the given image using the specified camera, direction, position, covariance, and color.
+ * Draws a Gaussian splat on the given image using the specified camera,
+ * direction, position, covariance, and color.
  *
  * @param image The image on which to draw the Gaussian splat.
  * @param cam The camera used to capture the image.
  * @param dir The direction of the Gaussian splat.
  * @param xyz The position of the Gaussian splat.
  * @param cov3d The covariance matrix of the Gaussian splat.
- * @param color_h The color harmonic used to determine the color of the Gaussian splat.
+ * @param color_h The color harmonic used to determine the color of the Gaussian
+ * splat.
  */
 void draw_gaussian(Image &image, const Camera &cam, const v4_t &dir, v4_t xyz,
                    m3_t cov3d, ColorHarmonic color_h) {
@@ -346,7 +377,7 @@ auto render(const Camera &cam, const GaussianData &data) {
     const auto c_dir = v4_t{0, 0, -1, 0};
     vector<int> sort_ind = sort_positions_in_direction(trans_xyz, c_dir);
 
-    v4_t camera_trans = cam.r_mat4_T[3];
+    v4_t camera_trans = cam.global_position();
     DEBUG_PRINT("Drawing")
     for (auto di : sort_ind) {
         draw_gaussian(image, cam, (data.xyz[di] - camera_trans).normalized(),
