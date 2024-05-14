@@ -1,5 +1,16 @@
 #include<vector>
 using vector = std::vector;
+struct QuadNode {
+    std::span<int> idx;
+    v4_t mn, mx;
+    QuadNode(std::span<int> idx, std::vector<v4_t> const &xyz)
+        : idx(idx), mn(MAXFLOAT + v4_t{0}), mx(MAXFLOAT * -1 + v4_t{0}) {
+        for (auto i : idx) {
+            mn = min(xyz[i], mn);
+            mx = max(xyz[i], mx);
+        }
+    }
+};
 struct QuadTree {
     vector<int> idx;
     vector<QuadNode> children;
