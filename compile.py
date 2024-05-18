@@ -5,8 +5,9 @@ import subprocess
 r = subprocess.run(["mpiCC", "-std=c++20", "-O3", "src/main_mpi.cpp"])
 assert r.returncode == 0
 from time import time
-for i in range(1,5):
-    r = subprocess.run(["mpirun","--oversubscribe", "-n", str(i), "./a.out"])
+# for i in range(1,5):
+i = 4
+r = subprocess.run(["mpirun","--oversubscribe", "-n", str(i), "./a.out"])
 assert r.returncode == 0
 
 import numpy as np

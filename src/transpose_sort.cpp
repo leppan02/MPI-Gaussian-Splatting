@@ -41,8 +41,6 @@ struct SortEngine {
     void largest_half() {
         // Stores largest half of ascending sorted vectors a, b in x
         int n = mydata.size();  // == a.size() == b.size()
-        std::cout << mydata.size() << " " << odata.size() << " " << tmp.size()
-                  << std::endl;
         int ai = n - 1, bi = n - 1;
         for (int i = 0; i < n; i++)
             tmp[n - 1 - i] =
