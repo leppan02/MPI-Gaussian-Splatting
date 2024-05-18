@@ -38,10 +38,10 @@ int recv_image(Image &image, int orig) {
     return 0;
 }
 
-#define timestamp(var) auto var = std::chrono::high_resolution_clock::now()
+#define ts(var) auto var = std::chrono::high_resolution_clock::now()
 #define diff(t1, t2) duration_cast<std::chrono::milliseconds>(t2 - t1).count()
 
-vector<int> get_elements(happly::PLYData &ply_data, v4_t dir) {
+vector<std::tuple<float, int>> get_elements(happly::PLYData &ply_data, v4_t dir) {
     int number_elements = GaussianData::get_size(ply_data);
 
     std::vector<int> el;
@@ -58,7 +58,11 @@ vector<int> get_elements(happly::PLYData &ply_data, v4_t dir) {
         world_rank >= (number_elements % world_size)) {
         data.push_back({0, -1});
     }
-    SortEngine<std::tuple<float, int>> sorter(data, world_rank, world_size);
+    return data;
+}
+
+vector<int> sort_positions(std::vector<std::tuple<float, int>> depths){
+    SortEngine<std::tuple<float, int>> sorter(depths, world_rank, world_size);
     sorter.run_sort();
     std::vector<int> elements;
     for (auto &d : sorter.mydata) {
@@ -70,8 +74,8 @@ vector<int> get_elements(happly::PLYData &ply_data, v4_t dir) {
 }
 
 int run(std::string f_name) {
-    timestamp(start);
 
+    ts(open_file);
     happly::PLYData ply_data(f_name);
 
     Camera cam(1000, 1000, (d_t)M_PI / 2.f);
@@ -83,18 +87,21 @@ int run(std::string f_name) {
     
     GaussianData data;
 
-    timestamp(openfile);
-    timestamp(loaded_xyz);
-    auto el = get_elements(ply_data, cam.r_mat4.mat_mul(v4_t{0, 0, 1, 1}));
+    ts(load_xyz);
+    auto depths = get_elements(ply_data, cam.r_mat4.mat_mul(v4_t{0, 0, 1, 1}));
+    ts(sort_xyz);
+    auto el = sort_positions(depths);
+    ts(load);
     data.load_data(ply_data, el);
-    timestamp(loaded);
 
+    ts(ts_render);
     auto image = render(cam, data);
+    ts(comm);
     if (world_rank == 0) {
         DEBUG_PRINT("Data per process: " << data.xyz.size())
     }
 
-    timestamp(rendered);
+
     for (int jump = 1; jump < world_size; jump *= 2) {
         if (world_rank % (jump * 2) == 0) {
             auto recv_rank = world_rank + jump;
@@ -108,20 +115,21 @@ int run(std::string f_name) {
             break;
         }
     }
-    timestamp(comm_done);
+    ts(done);
     if (world_rank == 0) {
         image.add_background({1, 1, 1});
         image.store_image("img.bmp");
     }
     if (world_rank == 0) {
         DEBUG_PRINT("Processes: " << world_size)
-        DEBUG_PRINT("Open file: " << diff(start, openfile) << "ms")
-        DEBUG_PRINT("Load positions: " << diff(openfile, loaded_xyz) << "ms")
-        DEBUG_PRINT("Rendering: " << diff(loaded, rendered) << "ms")
-        DEBUG_PRINT("Communication: " << diff(rendered, comm_done) << "ms\n")
+        DEBUG_PRINT("Open file: " << diff(open_file, load_xyz) << "ms")
+        DEBUG_PRINT("Load positions: " << diff(load_xyz, sort_xyz) << "ms")
+        DEBUG_PRINT("Sort positions: " << diff(sort_xyz, load) << "ms")
+        DEBUG_PRINT("Load: " << diff(load, ts_render) << "ms")
+        DEBUG_PRINT("Render: " << diff(ts_render, comm) << "ms")
+        DEBUG_PRINT("Communication: " << diff(comm, done) << "ms\n")
     }
-    //     break;
-    // }
+
     return 0;
 }
 
@@ -130,9 +138,9 @@ int main(int argc, char **argv) {
     MPI_Comm_size(comm, &world_size);
     MPI_Comm_rank(comm, &world_rank);
     int real_size = world_size;
-    for (world_size = real_size; world_size <= real_size; world_size++) {
+    for (world_size = 1; world_size <= real_size; world_size++) {
         if (world_rank < world_size) {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 5; i++) {
                 auto ret = run("data/point_cloud.ply");
                 if (ret != 0) return ret;
             }
