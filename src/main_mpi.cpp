@@ -11,15 +11,15 @@ int world_rank;
 int send_image(Image const &image, int dest) {
     int w = image.w;
     int h = image.h;
-    MPI_Request color_request;
-    MPI_Request alpha_request;
-    MPI_Isend(image.image.data(), image.image.size() * sizeof(image.image[0]),
-              MPI_BYTE, dest, 0, comm, &color_request);
-    MPI_Isend(image.alpha_mask.data(),
-              image.alpha_mask.size() * sizeof(image.alpha_mask[0]), MPI_BYTE,
-              dest, 0, comm, &alpha_request);
-    if (MPI_Wait(&color_request, MPI_STATUS_IGNORE) != 0) return -1;
-    if (MPI_Wait(&alpha_request, MPI_STATUS_IGNORE) != 0) return -1;
+    // MPI_Request color_request;
+    // MPI_Request alpha_request;
+    MPI_Send(image.image.data(), image.image.size() * sizeof(image.image[0]),
+             MPI_BYTE, dest, 0, comm);
+    MPI_Send(image.alpha_mask.data(),
+             image.alpha_mask.size() * sizeof(image.alpha_mask[0]), MPI_BYTE,
+             dest, 0, comm);
+    // if (MPI_Wait(&color_request, MPI_STATUS_IGNORE) != 0) return -1;
+    // if (MPI_Wait(&alpha_request, MPI_STATUS_IGNORE) != 0) return -1;
     return 0;
 }
 
@@ -28,20 +28,22 @@ int recv_image(Image &image, int orig) {
     int h = image.h;
     MPI_Request color_request;
     MPI_Request alpha_request;
-    MPI_Irecv(image.image.data(), image.image.size() * sizeof(image.image[0]),
-              MPI_BYTE, orig, 0, comm, &color_request);
-    MPI_Irecv(image.alpha_mask.data(),
-              image.alpha_mask.size() * sizeof(image.alpha_mask[0]), MPI_BYTE,
-              orig, 0, comm, &alpha_request);
-    if (MPI_Wait(&color_request, MPI_STATUS_IGNORE) != 0) return -1;
-    if (MPI_Wait(&alpha_request, MPI_STATUS_IGNORE) != 0) return -1;
+    MPI_Status s;
+    MPI_Recv(image.image.data(), image.image.size() * sizeof(image.image[0]),
+             MPI_BYTE, orig, 0, MPI_COMM_WORLD, &s);
+    MPI_Recv(image.alpha_mask.data(),
+             image.alpha_mask.size() * sizeof(image.alpha_mask[0]), MPI_BYTE,
+             orig, 0, MPI_COMM_WORLD, &s);
+    // if (MPI_Wait(&color_request, MPI_STATUS_IGNORE) != 0) return -1;
+    // if (MPI_Wait(&alpha_request, MPI_STATUS_IGNORE) != 0) return -1;
     return 0;
 }
 
 #define ts(var) auto var = std::chrono::high_resolution_clock::now()
 #define diff(t1, t2) duration_cast<std::chrono::milliseconds>(t2 - t1).count()
 
-vector<std::tuple<float, int>> get_elements(happly::PLYData &ply_data, v4_t dir) {
+vector<std::tuple<float, int>> get_elements(happly::PLYData &ply_data,
+                                            v4_t dir) {
     int number_elements = GaussianData::get_size(ply_data);
 
     std::vector<int> el;
@@ -61,7 +63,7 @@ vector<std::tuple<float, int>> get_elements(happly::PLYData &ply_data, v4_t dir)
     return data;
 }
 
-vector<int> sort_positions(std::vector<std::tuple<float, int>> depths){
+vector<int> sort_positions(std::vector<std::tuple<float, int>> depths) {
     SortEngine<std::tuple<float, int>> sorter(depths, world_rank, world_size);
     sorter.run_sort();
     std::vector<int> elements;
@@ -84,7 +86,7 @@ int run(std::string f_name, MPI_Comm barrier_comm) {
     cam.tilt(-(d_t)M_PI / 4.f);
     cam.tilt((d_t)M_PI / 8.f);
     cam.move_to(v4_t{0, 0, -1.5});
-    
+
     GaussianData data;
 
     MPI_Barrier(barrier_comm);
@@ -154,11 +156,12 @@ int main(int argc, char **argv) {
         if (world_rank < world_size) {
             MPI_Comm_split(MPI_COMM_WORLD, 0, world_rank, &barrier_comm);
             for (int i = 0; i < 5; i++) {
-                auto ret = run("data/point_cloud.ply",barrier_comm);
+                auto ret = run("data/point_cloud.ply", barrier_comm);
                 if (ret != 0) return ret;
             }
-        }else{
-            MPI_Comm_split(MPI_COMM_WORLD, MPI_UNDEFINED, world_rank, &barrier_comm);
+        } else {
+            MPI_Comm_split(MPI_COMM_WORLD, MPI_UNDEFINED, world_rank,
+                           &barrier_comm);
         }
         MPI_Barrier(MPI_COMM_WORLD);
     }
