@@ -8,7 +8,7 @@
 #SBATCH --ntasks-per-core=1
 #SBATCH --cpus-per-task=1
 # Use Dardel's main partition
-#SBATCH -p shared
+#SBATCH -p main
 
 # job name
 # Number of nodes
