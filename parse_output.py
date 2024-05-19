@@ -6,10 +6,19 @@ re_match = r"""Data per process: (\d+)
 Processes: (\d+)
 Open file: (\d+)ms
 Load positions: (\d+)ms
-Sorting: (\d+)ms
-Loading: (\d+)ms
-Rendering: (\d+)ms
+Sort positions: (\d+)ms
+Load: (\d+)ms
+Render: (\d+)ms
 Communication: (\d+)ms"""
+
+"""Data per process: 8797
+Processes: 32
+Open file: 432ms
+Load positions: 0ms
+Sort positions: 5ms
+Load: 17ms
+Render: 30ms
+Communication: 173ms"""
 
 @dataclass
 class Data:
@@ -24,7 +33,7 @@ class Data:
 
 data: list[Data] = []
 
-for p in Path('.').glob("slurm-*.out"):
+for p in Path('.').glob("slurm-394*.out"):
     data.extend(list(map(lambda x: Data(*map(int, x)), re.findall(re_match, p.read_text()))))
 
 from matplotlib import pyplot as plt

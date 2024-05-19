@@ -73,11 +73,11 @@ vector<int> sort_positions(std::vector<std::tuple<float, int>> depths){
     return elements;
 }
 
-int run(std::string f_name) {
-
+int run(std::string f_name, MPI_Comm barrier_comm) {
+    MPI_Barrier(barrier_comm);
     ts(open_file);
     happly::PLYData ply_data(f_name);
-
+    ts(done_open_file);
     Camera cam(1000, 1000, (d_t)M_PI / 2.f);
 
     cam.move_to({0.0706437, 1.88046, 1.16585, 1});
@@ -87,21 +87,32 @@ int run(std::string f_name) {
     
     GaussianData data;
 
+    MPI_Barrier(barrier_comm);
     ts(load_xyz);
     auto depths = get_elements(ply_data, cam.r_mat4.mat_mul(v4_t{0, 0, 1, 1}));
+    ts(done_load_xyz);
+
+    MPI_Barrier(barrier_comm);
     ts(sort_xyz);
     auto el = sort_positions(depths);
+    ts(done_sort_xyz);
+
+    MPI_Barrier(barrier_comm);
     ts(load);
     data.load_data(ply_data, el);
+    ts(done_load);
 
-    ts(ts_render);
+    MPI_Barrier(barrier_comm);
+    ts(start_render);
     auto image = render(cam, data);
-    ts(comm);
+    ts(done_render);
+
     if (world_rank == 0) {
         DEBUG_PRINT("Data per process: " << data.xyz.size())
     }
 
-
+    MPI_Barrier(barrier_comm);
+    ts(comm);
     for (int jump = 1; jump < world_size; jump *= 2) {
         if (world_rank % (jump * 2) == 0) {
             auto recv_rank = world_rank + jump;
@@ -115,19 +126,19 @@ int run(std::string f_name) {
             break;
         }
     }
-    ts(done);
+    ts(done_comm);
     if (world_rank == 0) {
         image.add_background({1, 1, 1});
         image.store_image("img.bmp");
     }
     if (world_rank == 0) {
         DEBUG_PRINT("Processes: " << world_size)
-        DEBUG_PRINT("Open file: " << diff(open_file, load_xyz) << "ms")
-        DEBUG_PRINT("Load positions: " << diff(load_xyz, sort_xyz) << "ms")
-        DEBUG_PRINT("Sort positions: " << diff(sort_xyz, load) << "ms")
-        DEBUG_PRINT("Load: " << diff(load, ts_render) << "ms")
-        DEBUG_PRINT("Render: " << diff(ts_render, comm) << "ms")
-        DEBUG_PRINT("Communication: " << diff(comm, done) << "ms\n")
+        DEBUG_PRINT("Open file: " << diff(open_file, done_open_file) << "ms")
+        DEBUG_PRINT("Load positions: " << diff(load_xyz, done_load_xyz) << "ms")
+        DEBUG_PRINT("Sort positions: " << diff(sort_xyz, done_sort_xyz) << "ms")
+        DEBUG_PRINT("Load: " << diff(load, done_load) << "ms")
+        DEBUG_PRINT("Render: " << diff(start_render, done_render) << "ms")
+        DEBUG_PRINT("Communication: " << diff(comm, done_comm) << "ms\n")
     }
 
     return 0;
@@ -139,12 +150,17 @@ int main(int argc, char **argv) {
     MPI_Comm_rank(comm, &world_rank);
     int real_size = world_size;
     for (world_size = 1; world_size <= real_size; world_size++) {
+        MPI_Comm barrier_comm;
         if (world_rank < world_size) {
+            MPI_Comm_split(MPI_COMM_WORLD, 0, world_rank, &barrier_comm);
             for (int i = 0; i < 5; i++) {
-                auto ret = run("data/point_cloud.ply");
+                auto ret = run("data/point_cloud.ply",barrier_comm);
                 if (ret != 0) return ret;
             }
+        }else{
+            MPI_Comm_split(MPI_COMM_WORLD, MPI_UNDEFINED, world_rank, &barrier_comm);
         }
+        MPI_Barrier(MPI_COMM_WORLD);
     }
 
     MPI_Finalize();
