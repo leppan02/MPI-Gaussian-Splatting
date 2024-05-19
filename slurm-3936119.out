@@ -1,0 +1,2880 @@
+Data per process: 281498
+Processes: 1
+Open file: 521ms
+Load positions: 7ms
+Sorting: 169ms
+Loading: 239ms
+Rendering: 823ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 429ms
+Load positions: 2ms
+Sorting: 115ms
+Loading: 170ms
+Rendering: 826ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 426ms
+Load positions: 2ms
+Sorting: 114ms
+Loading: 160ms
+Rendering: 825ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 432ms
+Load positions: 2ms
+Sorting: 116ms
+Loading: 170ms
+Rendering: 828ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 431ms
+Load positions: 1ms
+Sorting: 116ms
+Loading: 171ms
+Rendering: 828ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 428ms
+Load positions: 2ms
+Sorting: 113ms
+Loading: 160ms
+Rendering: 825ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 430ms
+Load positions: 2ms
+Sorting: 115ms
+Loading: 169ms
+Rendering: 829ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 429ms
+Load positions: 1ms
+Sorting: 116ms
+Loading: 170ms
+Rendering: 829ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 424ms
+Load positions: 1ms
+Sorting: 115ms
+Loading: 160ms
+Rendering: 825ms
+Communication: 0ms
+
+Data per process: 281498
+Processes: 1
+Open file: 430ms
+Load positions: 2ms
+Sorting: 116ms
+Loading: 170ms
+Rendering: 832ms
+Communication: 0ms
+
+Data per process: 140749
+Processes: 2
+Open file: 431ms
+Load positions: 1ms
+Sorting: 116ms
+Loading: 91ms
+Rendering: 531ms
+Communication: 10ms
+
+Data per process: 140749
+Processes: 2
+Open file: 429ms
+Load positions: 2ms
+Sorting: 115ms
+Loading: 91ms
+Rendering: 530ms
+Communication: 10ms
+
+Data per process: 140749
+Processes: 2
+Open file: 430ms
+Load positions: 1ms
+Sorting: 115ms
+Loading: 91ms
+Rendering: 531ms
+Communication: 10ms
+
+Data per process: 140749
+Processes: 2
+Open file: 430ms
+Load positions: 1ms
+Sorting: 114ms
+Loading: 82ms
+Rendering: 531ms
+Communication: 7ms
+
+Data per process: 140749
+Processes: 2
+Open file: 432ms
+Load positions: 2ms
+Sorting: 116ms
+Loading: 91ms
+Rendering: 532ms
+Communication: 7ms
+
+Data per process: 140749
+Processes: 2
+Open file: 430ms
+Load positions: 2ms
+Sorting: 115ms
+Loading: 92ms
+Rendering: 531ms
+Communication: 6ms
+
+Data per process: 140749
+Processes: 2
+Open file: 431ms
+Load positions: 1ms
+Sorting: 115ms
+Loading: 90ms
+Rendering: 531ms
+Communication: 6ms
+
+Data per process: 140749
+Processes: 2
+Open file: 429ms
+Load positions: 2ms
+Sorting: 113ms
+Loading: 82ms
+Rendering: 528ms
+Communication: 7ms
+
+Data per process: 140749
+Processes: 2
+Open file: 430ms
+Load positions: 2ms
+Sorting: 115ms
+Loading: 91ms
+Rendering: 532ms
+Communication: 7ms
+
+Data per process: 140749
+Processes: 2
+Open file: 433ms
+Load positions: 2ms
+Sorting: 114ms
+Loading: 91ms
+Rendering: 531ms
+Communication: 7ms
+
+Data per process: 93833
+Processes: 3
+Open file: 430ms
+Load positions: 1ms
+Sorting: 114ms
+Loading: 57ms
+Rendering: 361ms
+Communication: 19ms
+
+Data per process: 93833
+Processes: 3
+Open file: 432ms
+Load positions: 2ms
+Sorting: 147ms
+Loading: 58ms
+Rendering: 364ms
+Communication: 20ms
+
+Data per process: 93833
+Processes: 3
+Open file: 431ms
+Load positions: 2ms
+Sorting: 145ms
+Loading: 64ms
+Rendering: 360ms
+Communication: 19ms
+
+Data per process: 93833
+Processes: 3
+Open file: 430ms
+Load positions: 2ms
+Sorting: 145ms
+Loading: 63ms
+Rendering: 359ms
+Communication: 15ms
+
+Data per process: 93833
+Processes: 3
+Open file: 428ms
+Load positions: 2ms
+Sorting: 147ms
+Loading: 65ms
+Rendering: 359ms
+Communication: 16ms
+
+Data per process: 93833
+Processes: 3
+Open file: 430ms
+Load positions: 2ms
+Sorting: 146ms
+Loading: 59ms
+Rendering: 359ms
+Communication: 16ms
+
+Data per process: 93833
+Processes: 3
+Open file: 432ms
+Load positions: 1ms
+Sorting: 146ms
+Loading: 60ms
+Rendering: 360ms
+Communication: 16ms
+
+Data per process: 93833
+Processes: 3
+Open file: 432ms
+Load positions: 2ms
+Sorting: 147ms
+Loading: 64ms
+Rendering: 360ms
+Communication: 15ms
+
+Data per process: 93833
+Processes: 3
+Open file: 431ms
+Load positions: 2ms
+Sorting: 146ms
+Loading: 64ms
+Rendering: 360ms
+Communication: 13ms
+
+Data per process: 93833
+Processes: 3
+Open file: 430ms
+Load positions: 2ms
+Sorting: 149ms
+Loading: 65ms
+Rendering: 361ms
+Communication: 15ms
+
+Data per process: 70375
+Processes: 4
+Open file: 430ms
+Load positions: 2ms
+Sorting: 141ms
+Loading: 48ms
+Rendering: 261ms
+Communication: 13ms
+
+Data per process: 70375
+Processes: 4
+Open file: 431ms
+Load positions: 2ms
+Sorting: 141ms
+Loading: 48ms
+Rendering: 264ms
+Communication: 13ms
+
+Data per process: 70375
+Processes: 4
+Open file: 430ms
+Load positions: 1ms
+Sorting: 140ms
+Loading: 51ms
+Rendering: 262ms
+Communication: 14ms
+
+Data per process: 70375
+Processes: 4
+Open file: 429ms
+Load positions: 1ms
+Sorting: 143ms
+Loading: 52ms
+Rendering: 262ms
+Communication: 15ms
+
+Data per process: 70375
+Processes: 4
+Open file: 429ms
+Load positions: 1ms
+Sorting: 140ms
+Loading: 51ms
+Rendering: 261ms
+Communication: 16ms
+
+Data per process: 70375
+Processes: 4
+Open file: 429ms
+Load positions: 1ms
+Sorting: 140ms
+Loading: 51ms
+Rendering: 262ms
+Communication: 12ms
+
+Data per process: 70375
+Processes: 4
+Open file: 431ms
+Load positions: 1ms
+Sorting: 141ms
+Loading: 53ms
+Rendering: 265ms
+Communication: 12ms
+
+Data per process: 70375
+Processes: 4
+Open file: 430ms
+Load positions: 2ms
+Sorting: 141ms
+Loading: 48ms
+Rendering: 262ms
+Communication: 12ms
+
+Data per process: 70375
+Processes: 4
+Open file: 430ms
+Load positions: 2ms
+Sorting: 139ms
+Loading: 51ms
+Rendering: 262ms
+Communication: 16ms
+
+Data per process: 70375
+Processes: 4
+Open file: 431ms
+Load positions: 2ms
+Sorting: 141ms
+Loading: 48ms
+Rendering: 263ms
+Communication: 15ms
+
+Data per process: 56300
+Processes: 5
+Open file: 429ms
+Load positions: 1ms
+Sorting: 136ms
+Loading: 41ms
+Rendering: 207ms
+Communication: 29ms
+
+Data per process: 56300
+Processes: 5
+Open file: 430ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 44ms
+Rendering: 209ms
+Communication: 29ms
+
+Data per process: 56300
+Processes: 5
+Open file: 432ms
+Load positions: 1ms
+Sorting: 157ms
+Loading: 40ms
+Rendering: 209ms
+Communication: 22ms
+
+Data per process: 56300
+Processes: 5
+Open file: 428ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 40ms
+Rendering: 208ms
+Communication: 24ms
+
+Data per process: 56300
+Processes: 5
+Open file: 429ms
+Load positions: 1ms
+Sorting: 160ms
+Loading: 45ms
+Rendering: 208ms
+Communication: 21ms
+
+Data per process: 56300
+Processes: 5
+Open file: 431ms
+Load positions: 1ms
+Sorting: 158ms
+Loading: 40ms
+Rendering: 208ms
+Communication: 24ms
+
+Data per process: 56300
+Processes: 5
+Open file: 432ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 44ms
+Rendering: 208ms
+Communication: 19ms
+
+Data per process: 56300
+Processes: 5
+Open file: 430ms
+Load positions: 1ms
+Sorting: 156ms
+Loading: 40ms
+Rendering: 208ms
+Communication: 18ms
+
+Data per process: 56300
+Processes: 5
+Open file: 431ms
+Load positions: 1ms
+Sorting: 159ms
+Loading: 44ms
+Rendering: 207ms
+Communication: 22ms
+
+Data per process: 56300
+Processes: 5
+Open file: 429ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 40ms
+Rendering: 208ms
+Communication: 22ms
+
+Data per process: 46917
+Processes: 6
+Open file: 431ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 41ms
+Rendering: 172ms
+Communication: 18ms
+
+Data per process: 46917
+Processes: 6
+Open file: 432ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 37ms
+Rendering: 172ms
+Communication: 24ms
+
+Data per process: 46917
+Processes: 6
+Open file: 430ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 41ms
+Rendering: 172ms
+Communication: 19ms
+
+Data per process: 46917
+Processes: 6
+Open file: 430ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 37ms
+Rendering: 172ms
+Communication: 24ms
+
+Data per process: 46917
+Processes: 6
+Open file: 431ms
+Load positions: 1ms
+Sorting: 159ms
+Loading: 41ms
+Rendering: 171ms
+Communication: 19ms
+
+Data per process: 46917
+Processes: 6
+Open file: 428ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 41ms
+Rendering: 171ms
+Communication: 24ms
+
+Data per process: 46917
+Processes: 6
+Open file: 432ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 41ms
+Rendering: 170ms
+Communication: 18ms
+
+Data per process: 46917
+Processes: 6
+Open file: 431ms
+Load positions: 1ms
+Sorting: 158ms
+Loading: 40ms
+Rendering: 172ms
+Communication: 18ms
+
+Data per process: 46917
+Processes: 6
+Open file: 432ms
+Load positions: 1ms
+Sorting: 157ms
+Loading: 41ms
+Rendering: 171ms
+Communication: 18ms
+
+Data per process: 46917
+Processes: 6
+Open file: 431ms
+Load positions: 1ms
+Sorting: 158ms
+Loading: 41ms
+Rendering: 172ms
+Communication: 19ms
+
+Data per process: 40214
+Processes: 7
+Open file: 431ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 36ms
+Rendering: 143ms
+Communication: 20ms
+
+Data per process: 40214
+Processes: 7
+Open file: 431ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 33ms
+Rendering: 143ms
+Communication: 21ms
+
+Data per process: 40214
+Processes: 7
+Open file: 434ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 36ms
+Rendering: 143ms
+Communication: 22ms
+
+Data per process: 40214
+Processes: 7
+Open file: 430ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 33ms
+Rendering: 143ms
+Communication: 19ms
+
+Data per process: 40214
+Processes: 7
+Open file: 434ms
+Load positions: 1ms
+Sorting: 152ms
+Loading: 36ms
+Rendering: 142ms
+Communication: 29ms
+
+Data per process: 40214
+Processes: 7
+Open file: 433ms
+Load positions: 1ms
+Sorting: 153ms
+Loading: 33ms
+Rendering: 143ms
+Communication: 20ms
+
+Data per process: 40214
+Processes: 7
+Open file: 433ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 36ms
+Rendering: 142ms
+Communication: 28ms
+
+Data per process: 40214
+Processes: 7
+Open file: 431ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 33ms
+Rendering: 143ms
+Communication: 19ms
+
+Data per process: 40214
+Processes: 7
+Open file: 433ms
+Load positions: 1ms
+Sorting: 153ms
+Loading: 36ms
+Rendering: 143ms
+Communication: 27ms
+
+Data per process: 40214
+Processes: 7
+Open file: 432ms
+Load positions: 1ms
+Sorting: 152ms
+Loading: 34ms
+Rendering: 143ms
+Communication: 18ms
+
+Data per process: 35188
+Processes: 8
+Open file: 434ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 33ms
+Rendering: 119ms
+Communication: 23ms
+
+Data per process: 35188
+Processes: 8
+Open file: 429ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 31ms
+Rendering: 119ms
+Communication: 19ms
+
+Data per process: 35188
+Processes: 8
+Open file: 432ms
+Load positions: 1ms
+Sorting: 161ms
+Loading: 34ms
+Rendering: 120ms
+Communication: 27ms
+
+Data per process: 35188
+Processes: 8
+Open file: 432ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 33ms
+Rendering: 121ms
+Communication: 19ms
+
+Data per process: 35188
+Processes: 8
+Open file: 434ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 31ms
+Rendering: 120ms
+Communication: 21ms
+
+Data per process: 35188
+Processes: 8
+Open file: 432ms
+Load positions: 1ms
+Sorting: 160ms
+Loading: 34ms
+Rendering: 120ms
+Communication: 18ms
+
+Data per process: 35188
+Processes: 8
+Open file: 435ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 31ms
+Rendering: 120ms
+Communication: 22ms
+
+Data per process: 35188
+Processes: 8
+Open file: 431ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 33ms
+Rendering: 120ms
+Communication: 22ms
+
+Data per process: 35188
+Processes: 8
+Open file: 432ms
+Load positions: 1ms
+Sorting: 160ms
+Loading: 33ms
+Rendering: 120ms
+Communication: 20ms
+
+Data per process: 35188
+Processes: 8
+Open file: 432ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 31ms
+Rendering: 119ms
+Communication: 22ms
+
+Data per process: 31278
+Processes: 9
+Open file: 433ms
+Load positions: 1ms
+Sorting: 157ms
+Loading: 30ms
+Rendering: 102ms
+Communication: 39ms
+
+Data per process: 31278
+Processes: 9
+Open file: 433ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 30ms
+Rendering: 102ms
+Communication: 38ms
+
+Data per process: 31278
+Processes: 9
+Open file: 432ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 29ms
+Rendering: 103ms
+Communication: 37ms
+
+Data per process: 31278
+Processes: 9
+Open file: 431ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 30ms
+Rendering: 103ms
+Communication: 31ms
+
+Data per process: 31278
+Processes: 9
+Open file: 431ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 29ms
+Rendering: 102ms
+Communication: 30ms
+
+Data per process: 31278
+Processes: 9
+Open file: 432ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 30ms
+Rendering: 102ms
+Communication: 25ms
+
+Data per process: 31278
+Processes: 9
+Open file: 431ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 29ms
+Rendering: 102ms
+Communication: 30ms
+
+Data per process: 31278
+Processes: 9
+Open file: 432ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 29ms
+Rendering: 102ms
+Communication: 25ms
+
+Data per process: 31278
+Processes: 9
+Open file: 434ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 30ms
+Rendering: 102ms
+Communication: 25ms
+
+Data per process: 31278
+Processes: 9
+Open file: 432ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 29ms
+Rendering: 102ms
+Communication: 25ms
+
+Data per process: 28150
+Processes: 10
+Open file: 433ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 27ms
+Rendering: 90ms
+Communication: 25ms
+
+Data per process: 28150
+Processes: 10
+Open file: 432ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 34ms
+
+Data per process: 28150
+Processes: 10
+Open file: 434ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 26ms
+Rendering: 90ms
+Communication: 31ms
+
+Data per process: 28150
+Processes: 10
+Open file: 432ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 30ms
+
+Data per process: 28150
+Processes: 10
+Open file: 432ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 29ms
+
+Data per process: 28150
+Processes: 10
+Open file: 433ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 27ms
+
+Data per process: 28150
+Processes: 10
+Open file: 434ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 26ms
+Rendering: 90ms
+Communication: 25ms
+
+Data per process: 28150
+Processes: 10
+Open file: 432ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 26ms
+
+Data per process: 28150
+Processes: 10
+Open file: 432ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 25ms
+
+Data per process: 28150
+Processes: 10
+Open file: 431ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 28ms
+Rendering: 90ms
+Communication: 25ms
+
+Data per process: 25591
+Processes: 11
+Open file: 432ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 25ms
+Rendering: 81ms
+Communication: 26ms
+
+Data per process: 25591
+Processes: 11
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 26ms
+Rendering: 81ms
+Communication: 31ms
+
+Data per process: 25591
+Processes: 11
+Open file: 432ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 27ms
+Rendering: 80ms
+Communication: 33ms
+
+Data per process: 25591
+Processes: 11
+Open file: 432ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 26ms
+Rendering: 81ms
+Communication: 35ms
+
+Data per process: 25591
+Processes: 11
+Open file: 432ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 27ms
+Rendering: 80ms
+Communication: 25ms
+
+Data per process: 25591
+Processes: 11
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 26ms
+Rendering: 81ms
+Communication: 30ms
+
+Data per process: 25591
+Processes: 11
+Open file: 432ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 27ms
+Rendering: 80ms
+Communication: 30ms
+
+Data per process: 25591
+Processes: 11
+Open file: 430ms
+Load positions: 3ms
+Sorting: 154ms
+Loading: 27ms
+Rendering: 81ms
+Communication: 25ms
+
+Data per process: 25591
+Processes: 11
+Open file: 431ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 27ms
+Rendering: 81ms
+Communication: 24ms
+
+Data per process: 25591
+Processes: 11
+Open file: 430ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 27ms
+Rendering: 80ms
+Communication: 31ms
+
+Data per process: 23459
+Processes: 12
+Open file: 431ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 26ms
+Rendering: 73ms
+Communication: 31ms
+
+Data per process: 23459
+Processes: 12
+Open file: 428ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 26ms
+Rendering: 74ms
+Communication: 31ms
+
+Data per process: 23459
+Processes: 12
+Open file: 431ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 25ms
+Rendering: 73ms
+Communication: 28ms
+
+Data per process: 23459
+Processes: 12
+Open file: 429ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 26ms
+Rendering: 74ms
+Communication: 25ms
+
+Data per process: 23459
+Processes: 12
+Open file: 427ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 25ms
+Rendering: 73ms
+Communication: 26ms
+
+Data per process: 23459
+Processes: 12
+Open file: 431ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 24ms
+Rendering: 74ms
+Communication: 27ms
+
+Data per process: 23459
+Processes: 12
+Open file: 431ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 26ms
+Rendering: 74ms
+Communication: 28ms
+
+Data per process: 23459
+Processes: 12
+Open file: 431ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 24ms
+Rendering: 74ms
+Communication: 28ms
+
+Data per process: 23459
+Processes: 12
+Open file: 431ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 25ms
+Rendering: 74ms
+Communication: 28ms
+
+Data per process: 23459
+Processes: 12
+Open file: 435ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 24ms
+Rendering: 74ms
+Communication: 24ms
+
+Data per process: 21654
+Processes: 13
+Open file: 430ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 25ms
+Rendering: 68ms
+Communication: 25ms
+
+Data per process: 21654
+Processes: 13
+Open file: 431ms
+Load positions: 3ms
+Sorting: 154ms
+Loading: 24ms
+Rendering: 68ms
+Communication: 24ms
+
+Data per process: 21654
+Processes: 13
+Open file: 428ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 23ms
+Rendering: 68ms
+Communication: 29ms
+
+Data per process: 21654
+Processes: 13
+Open file: 430ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 24ms
+Rendering: 68ms
+Communication: 31ms
+
+Data per process: 21654
+Processes: 13
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 23ms
+Rendering: 67ms
+Communication: 24ms
+
+Data per process: 21654
+Processes: 13
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 23ms
+Rendering: 68ms
+Communication: 27ms
+
+Data per process: 21654
+Processes: 13
+Open file: 429ms
+Load positions: 1ms
+Sorting: 155ms
+Loading: 24ms
+Rendering: 68ms
+Communication: 26ms
+
+Data per process: 21654
+Processes: 13
+Open file: 430ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 23ms
+Rendering: 68ms
+Communication: 24ms
+
+Data per process: 21654
+Processes: 13
+Open file: 429ms
+Load positions: 1ms
+Sorting: 156ms
+Loading: 24ms
+Rendering: 68ms
+Communication: 25ms
+
+Data per process: 21654
+Processes: 13
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 23ms
+Rendering: 68ms
+Communication: 28ms
+
+Data per process: 20107
+Processes: 14
+Open file: 430ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 23ms
+Rendering: 63ms
+Communication: 25ms
+
+Data per process: 20107
+Processes: 14
+Open file: 429ms
+Load positions: 2ms
+Sorting: 149ms
+Loading: 22ms
+Rendering: 62ms
+Communication: 30ms
+
+Data per process: 20107
+Processes: 14
+Open file: 430ms
+Load positions: 2ms
+Sorting: 159ms
+Loading: 22ms
+Rendering: 63ms
+Communication: 33ms
+
+Data per process: 20107
+Processes: 14
+Open file: 429ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 24ms
+Rendering: 62ms
+Communication: 25ms
+
+Data per process: 20107
+Processes: 14
+Open file: 431ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 22ms
+Rendering: 62ms
+Communication: 30ms
+
+Data per process: 20107
+Processes: 14
+Open file: 431ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 23ms
+Rendering: 62ms
+Communication: 30ms
+
+Data per process: 20107
+Processes: 14
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 24ms
+Rendering: 63ms
+Communication: 25ms
+
+Data per process: 20107
+Processes: 14
+Open file: 431ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 22ms
+Rendering: 63ms
+Communication: 24ms
+
+Data per process: 20107
+Processes: 14
+Open file: 430ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 23ms
+Rendering: 62ms
+Communication: 25ms
+
+Data per process: 20107
+Processes: 14
+Open file: 432ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 23ms
+Rendering: 62ms
+Communication: 25ms
+
+Data per process: 18767
+Processes: 15
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 22ms
+Rendering: 58ms
+Communication: 25ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 23ms
+Rendering: 58ms
+Communication: 30ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 24ms
+Rendering: 58ms
+Communication: 24ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 22ms
+Rendering: 58ms
+Communication: 30ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 23ms
+Rendering: 59ms
+Communication: 25ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 23ms
+Rendering: 58ms
+Communication: 28ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 22ms
+Rendering: 58ms
+Communication: 28ms
+
+Data per process: 18767
+Processes: 15
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 23ms
+Rendering: 58ms
+Communication: 25ms
+
+Data per process: 18767
+Processes: 15
+Open file: 430ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 23ms
+Rendering: 58ms
+Communication: 25ms
+
+Data per process: 18767
+Processes: 15
+Open file: 429ms
+Load positions: 1ms
+Sorting: 152ms
+Loading: 22ms
+Rendering: 58ms
+Communication: 28ms
+
+Data per process: 17594
+Processes: 16
+Open file: 431ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 23ms
+Rendering: 55ms
+Communication: 25ms
+
+Data per process: 17594
+Processes: 16
+Open file: 431ms
+Load positions: 1ms
+Sorting: 154ms
+Loading: 22ms
+Rendering: 54ms
+Communication: 25ms
+
+Data per process: 17594
+Processes: 16
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 23ms
+Rendering: 55ms
+Communication: 25ms
+
+Data per process: 17594
+Processes: 16
+Open file: 428ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 23ms
+Rendering: 55ms
+Communication: 25ms
+
+Data per process: 17594
+Processes: 16
+Open file: 429ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 22ms
+Rendering: 54ms
+Communication: 30ms
+
+Data per process: 17594
+Processes: 16
+Open file: 429ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 22ms
+Rendering: 54ms
+Communication: 33ms
+
+Data per process: 17594
+Processes: 16
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 21ms
+Rendering: 54ms
+Communication: 24ms
+
+Data per process: 17594
+Processes: 16
+Open file: 429ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 22ms
+Rendering: 54ms
+Communication: 25ms
+
+Data per process: 17594
+Processes: 16
+Open file: 430ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 21ms
+Rendering: 55ms
+Communication: 24ms
+
+Data per process: 17594
+Processes: 16
+Open file: 427ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 22ms
+Rendering: 54ms
+Communication: 25ms
+
+Data per process: 16559
+Processes: 17
+Open file: 428ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 21ms
+Rendering: 51ms
+Communication: 37ms
+
+Data per process: 16559
+Processes: 17
+Open file: 428ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 26ms
+Rendering: 51ms
+Communication: 43ms
+
+Data per process: 16559
+Processes: 17
+Open file: 428ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 27ms
+Rendering: 51ms
+Communication: 43ms
+
+Data per process: 16559
+Processes: 17
+Open file: 430ms
+Load positions: 2ms
+Sorting: 149ms
+Loading: 25ms
+Rendering: 51ms
+Communication: 30ms
+
+Data per process: 16559
+Processes: 17
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 51ms
+Communication: 31ms
+
+Data per process: 16559
+Processes: 17
+Open file: 429ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 51ms
+Communication: 36ms
+
+Data per process: 16559
+Processes: 17
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 52ms
+Communication: 34ms
+
+Data per process: 16559
+Processes: 17
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 27ms
+Rendering: 50ms
+Communication: 36ms
+
+Data per process: 16559
+Processes: 17
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 26ms
+Rendering: 50ms
+Communication: 36ms
+
+Data per process: 16559
+Processes: 17
+Open file: 428ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 27ms
+Rendering: 51ms
+Communication: 30ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 47ms
+Communication: 33ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 28ms
+Rendering: 47ms
+Communication: 31ms
+
+Data per process: 15639
+Processes: 18
+Open file: 429ms
+Load positions: 1ms
+Sorting: 155ms
+Loading: 23ms
+Rendering: 47ms
+Communication: 32ms
+
+Data per process: 15639
+Processes: 18
+Open file: 429ms
+Load positions: 2ms
+Sorting: 149ms
+Loading: 24ms
+Rendering: 48ms
+Communication: 30ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 47ms
+Communication: 32ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 27ms
+Rendering: 47ms
+Communication: 31ms
+
+Data per process: 15639
+Processes: 18
+Open file: 432ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 26ms
+Rendering: 47ms
+Communication: 31ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 27ms
+Rendering: 47ms
+Communication: 31ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 29ms
+Rendering: 47ms
+Communication: 31ms
+
+Data per process: 15639
+Processes: 18
+Open file: 430ms
+Load positions: 2ms
+Sorting: 148ms
+Loading: 25ms
+Rendering: 48ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 431ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 429ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 28ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 431ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 428ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 27ms
+Rendering: 45ms
+Communication: 30ms
+
+Data per process: 14816
+Processes: 19
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 429ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 27ms
+Rendering: 45ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 428ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 430ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14816
+Processes: 19
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 44ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 429ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 27ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 26ms
+Rendering: 42ms
+Communication: 32ms
+
+Data per process: 14075
+Processes: 20
+Open file: 429ms
+Load positions: 1ms
+Sorting: 151ms
+Loading: 26ms
+Rendering: 42ms
+Communication: 30ms
+
+Data per process: 14075
+Processes: 20
+Open file: 428ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 27ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 430ms
+Load positions: 2ms
+Sorting: 159ms
+Loading: 22ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 429ms
+Load positions: 2ms
+Sorting: 148ms
+Loading: 27ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 27ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 427ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 28ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 429ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 25ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 14075
+Processes: 20
+Open file: 432ms
+Load positions: 2ms
+Sorting: 148ms
+Loading: 27ms
+Rendering: 42ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 428ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 20ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 429ms
+Load positions: 2ms
+Sorting: 145ms
+Loading: 26ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 428ms
+Load positions: 2ms
+Sorting: 149ms
+Loading: 26ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 429ms
+Load positions: 2ms
+Sorting: 148ms
+Loading: 26ms
+Rendering: 40ms
+Communication: 30ms
+
+Data per process: 13405
+Processes: 21
+Open file: 427ms
+Load positions: 2ms
+Sorting: 148ms
+Loading: 27ms
+Rendering: 39ms
+Communication: 30ms
+
+Data per process: 13405
+Processes: 21
+Open file: 430ms
+Load positions: 2ms
+Sorting: 147ms
+Loading: 26ms
+Rendering: 39ms
+Communication: 30ms
+
+Data per process: 13405
+Processes: 21
+Open file: 430ms
+Load positions: 2ms
+Sorting: 164ms
+Loading: 20ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 428ms
+Load positions: 2ms
+Sorting: 147ms
+Loading: 26ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 429ms
+Load positions: 2ms
+Sorting: 164ms
+Loading: 20ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 13405
+Processes: 21
+Open file: 430ms
+Load positions: 2ms
+Sorting: 145ms
+Loading: 26ms
+Rendering: 40ms
+Communication: 31ms
+
+Data per process: 12796
+Processes: 22
+Open file: 428ms
+Load positions: 2ms
+Sorting: 149ms
+Loading: 26ms
+Rendering: 38ms
+Communication: 31ms
+
+Data per process: 12796
+Processes: 22
+Open file: 428ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 20ms
+Rendering: 38ms
+Communication: 30ms
+
+Data per process: 12796
+Processes: 22
+Open file: 430ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 22ms
+Rendering: 38ms
+Communication: 31ms
+
+Data per process: 12796
+Processes: 22
+Open file: 429ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 23ms
+Rendering: 38ms
+Communication: 30ms
+
+Data per process: 12796
+Processes: 22
+Open file: 430ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 24ms
+Rendering: 38ms
+Communication: 31ms
+
+Data per process: 12796
+Processes: 22
+Open file: 428ms
+Load positions: 2ms
+Sorting: 168ms
+Loading: 18ms
+Rendering: 38ms
+Communication: 30ms
+
+Data per process: 12796
+Processes: 22
+Open file: 430ms
+Load positions: 2ms
+Sorting: 146ms
+Loading: 26ms
+Rendering: 38ms
+Communication: 31ms
+
+Data per process: 12796
+Processes: 22
+Open file: 427ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 19ms
+Rendering: 38ms
+Communication: 30ms
+
+Data per process: 12796
+Processes: 22
+Open file: 432ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 22ms
+Rendering: 38ms
+Communication: 32ms
+
+Data per process: 12796
+Processes: 22
+Open file: 429ms
+Load positions: 1ms
+Sorting: 160ms
+Loading: 18ms
+Rendering: 38ms
+Communication: 30ms
+
+Data per process: 12240
+Processes: 23
+Open file: 429ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 22ms
+Rendering: 36ms
+Communication: 30ms
+
+Data per process: 12240
+Processes: 23
+Open file: 430ms
+Load positions: 2ms
+Sorting: 164ms
+Loading: 18ms
+Rendering: 36ms
+Communication: 31ms
+
+Data per process: 12240
+Processes: 23
+Open file: 428ms
+Load positions: 2ms
+Sorting: 146ms
+Loading: 24ms
+Rendering: 36ms
+Communication: 30ms
+
+Data per process: 12240
+Processes: 23
+Open file: 431ms
+Load positions: 3ms
+Sorting: 159ms
+Loading: 18ms
+Rendering: 36ms
+Communication: 31ms
+
+Data per process: 12240
+Processes: 23
+Open file: 428ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 20ms
+Rendering: 36ms
+Communication: 30ms
+
+Data per process: 12240
+Processes: 23
+Open file: 426ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 21ms
+Rendering: 36ms
+Communication: 31ms
+
+Data per process: 12240
+Processes: 23
+Open file: 427ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 19ms
+Rendering: 36ms
+Communication: 31ms
+
+Data per process: 12240
+Processes: 23
+Open file: 427ms
+Load positions: 2ms
+Sorting: 144ms
+Loading: 25ms
+Rendering: 36ms
+Communication: 31ms
+
+Data per process: 12240
+Processes: 23
+Open file: 425ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 22ms
+Rendering: 36ms
+Communication: 31ms
+
+Data per process: 12240
+Processes: 23
+Open file: 426ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 19ms
+Rendering: 36ms
+Communication: 30ms
+
+Data per process: 11730
+Processes: 24
+Open file: 427ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 19ms
+Rendering: 35ms
+Communication: 31ms
+
+Data per process: 11730
+Processes: 24
+Open file: 425ms
+Load positions: 2ms
+Sorting: 146ms
+Loading: 22ms
+Rendering: 35ms
+Communication: 31ms
+
+Data per process: 11730
+Processes: 24
+Open file: 429ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 35ms
+Communication: 31ms
+
+Data per process: 11730
+Processes: 24
+Open file: 427ms
+Load positions: 1ms
+Sorting: 162ms
+Loading: 19ms
+Rendering: 35ms
+Communication: 31ms
+
+Data per process: 11730
+Processes: 24
+Open file: 428ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 21ms
+Rendering: 35ms
+Communication: 30ms
+
+Data per process: 11730
+Processes: 24
+Open file: 429ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 19ms
+Rendering: 35ms
+Communication: 31ms
+
+Data per process: 11730
+Processes: 24
+Open file: 427ms
+Load positions: 2ms
+Sorting: 145ms
+Loading: 23ms
+Rendering: 35ms
+Communication: 30ms
+
+Data per process: 11730
+Processes: 24
+Open file: 425ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 19ms
+Rendering: 35ms
+Communication: 30ms
+
+Data per process: 11730
+Processes: 24
+Open file: 425ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 18ms
+Rendering: 35ms
+Communication: 31ms
+
+Data per process: 11730
+Processes: 24
+Open file: 428ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 20ms
+Rendering: 35ms
+Communication: 30ms
+
+Data per process: 11260
+Processes: 25
+Open file: 427ms
+Load positions: 2ms
+Sorting: 159ms
+Loading: 19ms
+Rendering: 33ms
+Communication: 31ms
+
+Data per process: 11260
+Processes: 25
+Open file: 425ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 21ms
+Rendering: 33ms
+Communication: 30ms
+
+Data per process: 11260
+Processes: 25
+Open file: 427ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 33ms
+Communication: 31ms
+
+Data per process: 11260
+Processes: 25
+Open file: 427ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 19ms
+Rendering: 33ms
+Communication: 30ms
+
+Data per process: 11260
+Processes: 25
+Open file: 426ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 18ms
+Rendering: 33ms
+Communication: 31ms
+
+Data per process: 11260
+Processes: 25
+Open file: 426ms
+Load positions: 2ms
+Sorting: 154ms
+Loading: 20ms
+Rendering: 33ms
+Communication: 30ms
+
+Data per process: 11260
+Processes: 25
+Open file: 425ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 18ms
+Rendering: 33ms
+Communication: 31ms
+
+Data per process: 11260
+Processes: 25
+Open file: 426ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 19ms
+Rendering: 33ms
+Communication: 30ms
+
+Data per process: 11260
+Processes: 25
+Open file: 428ms
+Load positions: 2ms
+Sorting: 167ms
+Loading: 19ms
+Rendering: 34ms
+Communication: 31ms
+
+Data per process: 11260
+Processes: 25
+Open file: 427ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 19ms
+Rendering: 34ms
+Communication: 30ms
+
+Data per process: 10827
+Processes: 26
+Open file: 426ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 31ms
+
+Data per process: 10827
+Processes: 26
+Open file: 426ms
+Load positions: 2ms
+Sorting: 157ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 31ms
+
+Data per process: 10827
+Processes: 26
+Open file: 424ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 30ms
+
+Data per process: 10827
+Processes: 26
+Open file: 427ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 17ms
+Rendering: 32ms
+Communication: 30ms
+
+Data per process: 10827
+Processes: 26
+Open file: 424ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 32ms
+
+Data per process: 10827
+Processes: 26
+Open file: 428ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 17ms
+Rendering: 32ms
+Communication: 30ms
+
+Data per process: 10827
+Processes: 26
+Open file: 425ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 31ms
+
+Data per process: 10827
+Processes: 26
+Open file: 428ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 30ms
+
+Data per process: 10827
+Processes: 26
+Open file: 427ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 31ms
+
+Data per process: 10827
+Processes: 26
+Open file: 427ms
+Load positions: 2ms
+Sorting: 163ms
+Loading: 18ms
+Rendering: 32ms
+Communication: 30ms
+
+Data per process: 10426
+Processes: 27
+Open file: 424ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 18ms
+Rendering: 31ms
+Communication: 31ms
+
+Data per process: 10426
+Processes: 27
+Open file: 427ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 17ms
+Rendering: 31ms
+Communication: 30ms
+
+Data per process: 10426
+Processes: 27
+Open file: 427ms
+Load positions: 2ms
+Sorting: 164ms
+Loading: 18ms
+Rendering: 31ms
+Communication: 30ms
+
+Data per process: 10426
+Processes: 27
+Open file: 427ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 31ms
+Communication: 30ms
+
+Data per process: 10426
+Processes: 27
+Open file: 426ms
+Load positions: 2ms
+Sorting: 163ms
+Loading: 18ms
+Rendering: 31ms
+Communication: 31ms
+
+Data per process: 10426
+Processes: 27
+Open file: 428ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 17ms
+Rendering: 31ms
+Communication: 30ms
+
+Data per process: 10426
+Processes: 27
+Open file: 424ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 31ms
+Communication: 31ms
+
+Data per process: 10426
+Processes: 27
+Open file: 424ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 19ms
+Rendering: 31ms
+Communication: 35ms
+
+Data per process: 10426
+Processes: 27
+Open file: 425ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 31ms
+Communication: 31ms
+
+Data per process: 10426
+Processes: 27
+Open file: 424ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 17ms
+Rendering: 31ms
+Communication: 30ms
+
+Data per process: 10054
+Processes: 28
+Open file: 426ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 30ms
+Communication: 32ms
+
+Data per process: 10054
+Processes: 28
+Open file: 426ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 17ms
+Rendering: 30ms
+Communication: 30ms
+
+Data per process: 10054
+Processes: 28
+Open file: 427ms
+Load positions: 1ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 30ms
+Communication: 31ms
+
+Data per process: 10054
+Processes: 28
+Open file: 424ms
+Load positions: 1ms
+Sorting: 156ms
+Loading: 17ms
+Rendering: 30ms
+Communication: 30ms
+
+Data per process: 10054
+Processes: 28
+Open file: 425ms
+Load positions: 3ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 30ms
+Communication: 31ms
+
+Data per process: 10054
+Processes: 28
+Open file: 423ms
+Load positions: 1ms
+Sorting: 156ms
+Loading: 18ms
+Rendering: 30ms
+Communication: 31ms
+
+Data per process: 10054
+Processes: 28
+Open file: 425ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 17ms
+Rendering: 30ms
+Communication: 31ms
+
+Data per process: 10054
+Processes: 28
+Open file: 423ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 17ms
+Rendering: 30ms
+Communication: 32ms
+
+Data per process: 10054
+Processes: 28
+Open file: 424ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 18ms
+Rendering: 30ms
+Communication: 31ms
+
+Data per process: 10054
+Processes: 28
+Open file: 425ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 17ms
+Rendering: 30ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 423ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 422ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 426ms
+Load positions: 1ms
+Sorting: 159ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 424ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 424ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 18ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 423ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 425ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 32ms
+
+Data per process: 9707
+Processes: 29
+Open file: 423ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 18ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9707
+Processes: 29
+Open file: 424ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 30ms
+
+Data per process: 9707
+Processes: 29
+Open file: 423ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 18ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 425ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 32ms
+
+Data per process: 9384
+Processes: 30
+Open file: 424ms
+Load positions: 1ms
+Sorting: 163ms
+Loading: 18ms
+Rendering: 28ms
+Communication: 30ms
+
+Data per process: 9384
+Processes: 30
+Open file: 426ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 17ms
+Rendering: 28ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 426ms
+Load positions: 1ms
+Sorting: 163ms
+Loading: 17ms
+Rendering: 29ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 428ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 18ms
+Rendering: 28ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 425ms
+Load positions: 2ms
+Sorting: 160ms
+Loading: 17ms
+Rendering: 28ms
+Communication: 30ms
+
+Data per process: 9384
+Processes: 30
+Open file: 424ms
+Load positions: 1ms
+Sorting: 163ms
+Loading: 17ms
+Rendering: 28ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 425ms
+Load positions: 1ms
+Sorting: 160ms
+Loading: 17ms
+Rendering: 28ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 424ms
+Load positions: 2ms
+Sorting: 161ms
+Loading: 18ms
+Rendering: 28ms
+Communication: 31ms
+
+Data per process: 9384
+Processes: 30
+Open file: 425ms
+Load positions: 2ms
+Sorting: 159ms
+Loading: 17ms
+Rendering: 28ms
+Communication: 31ms
+
+Data per process: 9081
+Processes: 31
+Open file: 425ms
+Load positions: 2ms
+Sorting: 162ms
+Loading: 17ms
+Rendering: 27ms
+Communication: 31ms
+
+Data per process: 9081
+Processes: 31
+Open file: 425ms
+Load positions: 2ms
+Sorting: 155ms
+Loading: 17ms
+Rendering: 27ms
+Communication: 32ms
+
+Data per process: 9081
+Processes: 31
+Open file: 423ms
+Load positions: 3ms
+Sorting: 163ms
+Loading: 17ms
+Rendering: 27ms
+Communication: 31ms
+
+Data per process: 9081
+Processes: 31
+Open file: 426ms
+Load positions: 1ms
+Sorting: 156ms
+Loading: 16ms
+Rendering: 27ms
+Communication: 31ms
+
+Data per process: 9081
+Processes: 31
+Open file: 424ms
+Load positions: 2ms
+Sorting: 159ms
+Loading: 17ms
+Rendering: 27ms
+Communication: 33ms
+
+Data per process: 9081
+Processes: 31
+Open file: 425ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 16ms
+Rendering: 27ms
+Communication: 39ms
+
+Data per process: 9081
+Processes: 31
+Open file: 424ms
+Load positions: 1ms
+Sorting: 160ms
+Loading: 17ms
+Rendering: 27ms
+Communication: 39ms
+
+Data per process: 9081
+Processes: 31
+Open file: 424ms
+Load positions: 1ms
+Sorting: 157ms
+Loading: 16ms
+Rendering: 27ms
+Communication: 37ms
+
+Data per process: 9081
+Processes: 31
+Open file: 424ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 17ms
+Rendering: 27ms
+Communication: 42ms
+
+Data per process: 9081
+Processes: 31
+Open file: 426ms
+Load positions: 2ms
+Sorting: 156ms
+Loading: 16ms
+Rendering: 27ms
+Communication: 40ms
+
+Data per process: 8797
+Processes: 32
+Open file: 423ms
+Load positions: 2ms
+Sorting: 158ms
+Loading: 17ms
+Rendering: 26ms
+Communication: 35ms
+
+Data per process: 8797
+Processes: 32
+Open file: 423ms
+Load positions: 1ms
+Sorting: 155ms
+Loading: 16ms
+Rendering: 26ms
+Communication: 45ms
+
+Data per process: 8797
+Processes: 32
+Open file: 426ms
+Load positions: 2ms
+Sorting: 153ms
+Loading: 17ms
+Rendering: 26ms
+Communication: 49ms
+
+Data per process: 8797
+Processes: 32
+Open file: 428ms
+Load positions: 1ms
+Sorting: 149ms
+Loading: 16ms
+Rendering: 26ms
+Communication: 49ms
+
+Data per process: 8797
+Processes: 32
+Open file: 424ms
+Load positions: 2ms
+Sorting: 152ms
+Loading: 17ms
+Rendering: 26ms
+Communication: 48ms
+
+Data per process: 8797
+Processes: 32
+Open file: 429ms
+Load positions: 1ms
+Sorting: 151ms
+Loading: 16ms
+Rendering: 26ms
+Communication: 46ms
+
+Data per process: 8797
+Processes: 32
+Open file: 424ms
+Load positions: 3ms
+Sorting: 153ms
+Loading: 17ms
+Rendering: 26ms
+Communication: 50ms
+
+Data per process: 8797
+Processes: 32
+Open file: 424ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 16ms
+Rendering: 26ms
+Communication: 50ms
+
+Data per process: 8797
+Processes: 32
+Open file: 426ms
+Load positions: 2ms
+Sorting: 151ms
+Loading: 17ms
+Rendering: 26ms
+Communication: 50ms
+
+Data per process: 8797
+Processes: 32
+Open file: 422ms
+Load positions: 2ms
+Sorting: 150ms
+Loading: 16ms
+Rendering: 27ms
+Communication: 53ms
+
